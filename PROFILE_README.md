@@ -1,107 +1,83 @@
-# <img src="https://media.giphy.com/media/hvRJCLFzcasr6/giphy.gif" width="30px"> Hi, I'm Wahid Farhan!
+<h1 align="center">Hey 👋 What's Up? I'm Wahid Farhan</h1>
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&duration=3000&pause=1000&color=3B82F6&center=true&vCenter=true&width=450&lines=Full-Stack+Developer;Automation+%26+QA+Engineer;IoT+%26+Embedded+Systems;Content+Creator+%40+CodingVerse" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&duration=3000&pause=1000&color=BD93F9&center=true&vCenter=true&width=450&lines=Full-Stack+Developer;Software+%26+Automation+Engineer;IoT+%26+Embedded+Systems;Content+Creator+%40+CodingVerse" alt="Typing SVG" />
 </p>
 
 <p align="center">
   <a href="https://github.com/wahidfarhan">
-    <img src="https://img.shields.io/github/followers/wahidfarhan?label=Followers&style=flat-square&color=3B82F6&logo=github&logoColor=white" alt="Followers" />
+    <img src="https://img.shields.io/github/followers/wahidfarhan?label=Followers&style=flat-square&color=8be9fd&logo=github&logoColor=black" alt="Followers" />
   </a>
   <a href="https://github.com/wahidfarhan">
-    <img src="https://img.shields.io/github/stars/wahidfarhan?style=flat-square&color=10B981&logo=github&logoColor=white" alt="Stars" />
+    <img src="https://img.shields.io/github/stars/wahidfarhan?style=flat-square&color=50fa7b&logo=github&logoColor=black" alt="Stars" />
   </a>
 </p>
 
 ---
 
 ## 🌐 Connect With Me:
-<p align="left">
+
+<div align="center">
   <a href="https://linkedin.com/in/farhanwahid" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-  </a>
-  <a href="mailto:farhanrahman1985@gmail.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+    <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&style=for-the-badge" height="28" alt="linkedin" />
   </a>
   <a href="https://youtube.com/@@CodingVerse-Farhan" target="_blank">
-    <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white" alt="YouTube" />
+    <img src="https://img.shields.io/static/v1?message=YouTube&logo=youtube&label=&color=FF0000&logoColor=white&style=for-the-badge" height="28" alt="youtube" />
   </a>
   <a href="https://facebook.com/Farhan.Wahid.21" target="_blank">
-    <img src="https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=Facebook&logoColor=white" alt="Facebook" />
+    <img src="https://img.shields.io/static/v1?message=Facebook&logo=facebook&label=&color=1877F2&logoColor=white&style=for-the-badge" height="28" alt="facebook" />
   </a>
   <a href="https://instagram.com/mdfarhan6521" target="_blank">
-    <img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white" alt="Instagram" />
+    <img src="https://img.shields.io/static/v1?message=Instagram&logo=instagram&label=&color=E4405F&logoColor=white&style=for-the-badge" height="28" alt="instagram" />
   </a>
   <a href="https://discord.gg/nocode" target="_blank">
-    <img src="https://img.shields.io/badge/Discord-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" />
+    <img src="https://img.shields.io/static/v1?message=Discord&logo=discord&label=&color=7289DA&logoColor=white&style=for-the-badge" height="28" alt="discord" />
   </a>
-  <a href="https://pinterest.com/farhanrahman1985" target="_blank">
-    <img src="https://img.shields.io/badge/Pinterest-%23E60023.svg?style=for-the-badge&logo=Pinterest&logoColor=white" alt="Pinterest" />
+  <a href="mailto:farhanrahman1985@gmail.com">
+    <img src="https://img.shields.io/static/v1?message=Email&logo=gmail&label=&color=D14836&logoColor=white&style=for-the-badge" height="28" alt="email" />
   </a>
-</p>
+</div>
 
 ---
 
 ## 💻 Tech Stack & Skills:
 
-### 🚀 Programming Languages
-<p align="left">
-  <img src="https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white" alt="C" />
-  <img src="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white" alt="C#" />
-  <img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++" />
-  <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
-  <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript" />
-  <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python" />
-  <img src="https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white" alt="PowerShell" />
-</p>
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=nextjs,tailwind,py,c,cpp,html,css,js,php,qt,vscode,linux" height="52" alt="Tech Stack Icons" />
+</div>
 
-### 🌐 Frameworks, Databases & Libraries
-<p align="left">
-  <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
-  <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
-  <img src="https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white" alt="Flask" />
-  <img src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite" />
-  <img src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
-  <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white" alt="TensorFlow" />
-</p>
+---
 
-### 🔧 Automation, Hardware & Tools
-<p align="left">
-  <img src="https://img.shields.io/badge/-selenium-%2343B02A?style=for-the-badge&logo=selenium&logoColor=white" alt="Selenium" />
-  <img src="https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white" alt="Arduino" />
-  <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
-  <img src="https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white" alt="Canva" />
+## 📊 Performance & Analytics:
+
+<div align="center">
+  <table border="0">
+    <tr>
+      <td align="center" valign="top">
+        <img src="https://streak-stats.demolab.com?user=wahidfarhan&locale=en&mode=daily&theme=dracula&hide_border=false&border_radius=8" height="165" alt="Streak Graph" />
+      </td>
+      <td align="center" valign="top">
+        <img src="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/trophy-output/trophy.svg?theme=dracula&column=-1&row=1&margin-w=8&margin-h=8&no-bg=false&no-frame=false" height="165" alt="Trophy Graph" />
+      </td>
+    </tr>
+  </table>
+</div>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=wahidfarhan&theme=dracula&show_icons=true&include_all_commits=true&count_private=true&border_radius=8" alt="GitHub Stats" width="48%" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=wahidfarhan&theme=dracula&include_all_commits=true&count_private=true&layout=compact&border_radius=8" alt="Top Languages" width="48%" />
 </p>
 
 ---
 
-## 🏆 GitHub Trophies:
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=wahidfarhan&theme=tokyonight&no-frame=false&no-bg=true&margin-w=4" alt="GitHub Trophies" />
-</p>
-
----
-
-## 📊 GitHub Analytics:
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=wahidfarhan&theme=tokyonight&show_icons=true&include_all_commits=true&count_private=true&border_radius=10" alt="GitHub Stats" width="48%" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=wahidfarhan&theme=tokyonight&include_all_commits=true&count_private=true&layout=compact&border_radius=10" alt="Top Languages" width="48%" />
-</p>
+## 🎮 Contribution Activity (Pacman):
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=wahidfarhan&theme=tokyonight&border_radius=10" alt="GitHub Streak" width="98%" />
-</p>
-
----
-
-### 🔝 Top Contributed Repositories:
-<p align="center">
-  <img src="https://github-contributor-stats.vercel.app/api?username=wahidfarhan&limit=5&theme=tokyonight&combine_all_yearly_contributions=true" alt="Top Contributed" />
-</p>
-
-### ✍️ Random Dev Quote:
-<p align="center">
-  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" alt="Random Dev Quote" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/pacman-output/pacman-contribution-graph-dark.svg?game=pacman">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/pacman-output/pacman-contribution-graph.svg?game=pacman">
+    <img alt="Pacman Contribution Graph" src="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/pacman-output/pacman-contribution-graph.svg?game=pacman" width="100%">
+  </picture>
 </p>
 
 ---
