@@ -73,12 +73,12 @@
 </div>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=wahidfarhan&theme=dracula&show_icons=true&include_all_commits=true&count_private=true&border_radius=8" alt="GitHub Stats" width="48%" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=wahidfarhan&theme=dracula&include_all_commits=true&count_private=true&layout=compact&border_radius=8" alt="Top Languages" width="48%" />
+  <img src="https://github-readme-stats.vercel.app/api?username=wahidfarhan&theme=dracula&show_icons=true&include_all_commits=true&count_private=true&border_radius=8" alt="GitHub Stats" height="165" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=wahidfarhan&theme=dracula&include_all_commits=true&count_private=true&layout=compact&border_radius=8" alt="Top Languages" height="165" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=wahidfarhan&theme=react-dark&bg_color=282a36&color=ff79c6&line=8be9fd&point=50fa7b&area=true&hide_border=true" alt="Contribution Graph" width="98%" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=wahidfarhan&theme=react-dark&bg_color=282a36&color=ff79c6&line=8be9fd&point=50fa7b&area=true&hide_border=true" alt="Contribution Graph" height="165" />
 </p>
 
 ---
