@@ -74,7 +74,7 @@
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=wahidfarhan&theme=dracula&show_icons=true&include_all_commits=true&count_private=true&border_radius=8" alt="GitHub Stats" width="48%" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=wahidfarhan&theme=dracula&include_all_commits=true&count_private=true&layout=compact&border_radius=8" alt="Top Languages" width="48%" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=wahidfarhan&theme=dracula&include_all_commits=true&count_private=true&layout=compact&border_radius=8" alt="Top Languages" width="48%" />
 </p>
 
 <p align="center">
