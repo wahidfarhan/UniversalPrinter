@@ -66,15 +66,15 @@
         <img src="https://streak-stats.demolab.com?user=wahidfarhan&locale=en&mode=daily&theme=dracula&hide_border=false&border_radius=8" height="165" alt="Streak Graph" />
       </td>
       <td align="center" valign="top">
-        <img src="https://github-profile-trophy.vercel.app/?username=wahidfarhan&theme=dracula&no-bg=false&no-frame=false" height="165" alt="Trophy Graph" />
+        <img src="https://github-profile-trophy-tawny.vercel.app/?username=wahidfarhan&theme=dracula&no-bg=false&no-frame=false" height="165" alt="Trophy Graph" />
       </td>
     </tr>
   </table>
 </div>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=wahidfarhan&theme=dracula&show_icons=true&include_all_commits=true&count_private=true&border_radius=8" alt="GitHub Stats" height="165" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=wahidfarhan&theme=dracula&include_all_commits=true&count_private=true&layout=compact&border_radius=8" alt="Top Languages" height="165" />
+  <img src="https://github-stats-extended.vercel.app/api?username=wahidfarhan&theme=dracula&show_icons=true&include_all_commits=true&count_private=true&border_radius=8" alt="GitHub Stats" height="165" />
+  <img src="https://github-stats-extended.vercel.app/api/top-langs?username=wahidfarhan&theme=dracula&include_all_commits=true&count_private=true&layout=compact&border_radius=8" alt="Top Languages" height="165" />
 </p>
 
 <p align="center">
