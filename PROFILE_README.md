@@ -117,7 +117,5 @@
 ---
 
 <p align="center">
-  <a href="https://visitcount.itsvg.in">
-    <img src="https://visitcount.itsvg.in/api?id=wahidfarhan&icon=2&color=0" alt="Visitor Count" />
-  </a>
+  <img src="https://profile-counter.glitch.me/wahidfarhan/count.svg" alt="Visitor Count" />
 </p>
