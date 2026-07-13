@@ -87,9 +87,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/pacman-output/pacman-contribution-graph-dark.svg?game=pacman">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/pacman-output/pacman-contribution-graph.svg?game=pacman">
-    <img alt="Pacman Contribution Graph" src="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/pacman-output/pacman-contribution-graph.svg?game=pacman" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/pacman-output/pacman-animation-dark.svg?game=pacman">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/pacman-output/pacman-animation.svg?game=pacman">
+    <img alt="Pacman Contribution Graph" src="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/pacman-output/pacman-animation.svg?game=pacman" width="100%">
   </picture>
 </p>
 
