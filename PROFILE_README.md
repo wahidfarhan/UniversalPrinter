@@ -66,7 +66,7 @@
         <img src="https://streak-stats.demolab.com?user=wahidfarhan&locale=en&mode=daily&theme=dracula&hide_border=false&border_radius=8" height="165" alt="Streak Graph" />
       </td>
       <td align="center" valign="top">
-        <img src="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/trophy-output/trophy.svg?theme=dracula&column=-1&row=1&margin-w=8&margin-h=8&no-bg=false&no-frame=false" height="165" alt="Trophy Graph" />
+        <img src="https://github-profile-trophy.vercel.app/?username=wahidfarhan&theme=dracula&no-bg=false&no-frame=false" height="165" alt="Trophy Graph" />
       </td>
     </tr>
   </table>
