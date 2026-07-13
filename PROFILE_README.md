@@ -15,6 +15,15 @@
 
 ---
 
+## ⚡ Quick About Me:
+- 💻 **Main Focus**: Crafting high-performance web applications and automation engines.
+- 🎓 **Studies**: Computer Science & Engineering.
+- 🚀 **Current Project**: [Universal Cloud Print System (UCPS)](https://github.com/wahidfarhan/UniversalPrinter) - A cloud-spooled campus printing platform.
+- 🍕 **Fueled By**: Coffee, clean code, and a curious mind.
+- 💬 **Ask me about**: JavaScript, Python, Automation Scripts, or Arduino circuits!
+
+---
+
 ## 🌐 Connect With Me:
 
 <div align="center">
@@ -68,6 +77,10 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=wahidfarhan&theme=dracula&include_all_commits=true&count_private=true&layout=compact&border_radius=8" alt="Top Languages" width="48%" />
 </p>
 
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=wahidfarhan&theme=react-dark&bg_color=282a36&color=ff79c6&line=8be9fd&point=50fa7b&area=true&hide_border=true" alt="Contribution Graph" width="98%" />
+</p>
+
 ---
 
 ## 🎮 Contribution Activity (Pacman):
@@ -78,6 +91,27 @@
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/pacman-output/pacman-contribution-graph.svg?game=pacman">
     <img alt="Pacman Contribution Graph" src="https://raw.githubusercontent.com/wahidfarhan/wahidfarhan/pacman-output/pacman-contribution-graph.svg?game=pacman" width="100%">
   </picture>
+</p>
+
+---
+
+### 🎥 Latest Videos on CodingVerse:
+<p align="left">
+  <a href="https://youtube.com/@@CodingVerse-Farhan" target="_blank">
+    <img src="https://img.shields.io/badge/YouTube-Watch%20My%20Channel-red?style=for-the-badge&logo=youtube&logoColor=white" alt="CodingVerse Channel" />
+  </a>
+</p>
+<ul>
+  <li>🔥 Development Tutorials</li>
+  <li>🛠️ Automation & Scripting Walkthroughs</li>
+  <li>🤖 IoT & Hardware Integrations</li>
+</ul>
+
+---
+
+### ✍️ Random Dev Quote:
+<p align="center">
+  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" alt="Random Dev Quote" />
 </p>
 
 ---
