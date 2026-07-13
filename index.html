@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0b0f19">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Universal Cloud Print System (UCPS)</title>
+    <!-- Google Fonts: Outfit & Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css?v=5.0">
+    <!-- PDF.js Library for Inline PDF Rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <!-- html5-qrcode Library for Camera Scanner -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+    <!-- ============================================================
+         MOBILE RESPONSIVE OVERRIDE — Embedded so it cannot be cached
+         ============================================================ -->
+    <style>
+    /* ---- MOBILE BOTTOM NAV (always visible in HTML, JS shows it) ---- */
+    #mobile-bottom-nav {
+        display: none;
+        position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+        background: rgba(10,15,28,0.97);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding: 6px 4px;
+        flex-direction: row; justify-content: space-around; align-items: center;
+    }
+
+    @media (max-width: 768px) {
+
+        /* ---- GLOBAL BOX MODEL ---- */
+        *, *::before, *::after { box-sizing: border-box; }
+        body { overflow-x: hidden !important; }
+
+        /* ---- HIDE DESKTOP NAV ---- */
+        #main-nav-desktop { display: none !important; }
+        .mobile-hide { display: none !important; }
+
+        /* ---- HEADER ---- */
+        .header-container {
+            padding: 10px 14px !important;
+            flex-wrap: nowrap !important;
+            gap: 8px !important;
+        }
+        .logo-text { font-size: 16px !important; }
+        .status-indicator { padding: 4px 8px !important; font-size: 10px !important; }
+        .profile-info { display: none !important; }
+
+        /* ---- MAIN CONTENT AREA ---- */
+        .app-main-content {
+            padding: 14px 12px 80px 12px !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+        }
+
+        /* ---- DASHBOARD GRID ---- */
+        .dashboard-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 14px !important;
+        }
+        .dash-left-column, .dash-right-column {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 14px !important;
+            width: 100% !important;
+        }
+
+        /* ---- CARDS ---- */
+        .card { padding: 14px !important; }
+        .card-title { font-size: 14px !important; margin-bottom: 12px !important; }
+
+        /* ---- HERO SECTION ---- */
+        .hero-section {
+            display: flex !important; flex-direction: column !important;
+            text-align: center !important; padding: 16px 0 !important; gap: 20px !important;
+        }
+        .hero-title { font-size: 22px !important; line-height: 1.3 !important; }
+        .hero-subtitle { font-size: 13px !important; }
+        .hero-actions {
+            display: flex !important; flex-direction: column !important;
+            gap: 10px !important; align-items: stretch !important;
+        }
+        .cta-btn, .secondary-btn {
+            width: 100% !important; justify-content: center !important;
+            padding: 13px 16px !important; font-size: 14px !important;
+        }
+        .hero-graphic { max-width: 280px !important; margin: 0 auto !important; }
+
+        /* ---- FEATURE / HOW-IT-WORKS / STATS GRIDS ---- */
+        .features-grid, .how-it-works-grid, .stats-grid {
+            display: flex !important; flex-direction: column !important; gap: 12px !important;
+        }
+
+        /* ---- FEATURE CARDS ---- */
+        .feature-card, .how-step-card { padding: 16px !important; }
+
+        /* ---- USER UPLOAD SECTION ---- */
+        .file-drop-zone { padding: 22px 14px !important; }
+        .drop-icon { font-size: 2rem !important; }
+        .drop-text { font-size: 14px !important; }
+        .drop-subtext { font-size: 11px !important; }
+
+        /* ---- PRINT OPTIONS GRID ---- */
+        .print-options-grid {
+            display: flex !important; flex-direction: column !important; gap: 10px !important;
+        }
+
+        /* ---- BUTTONS ---- */
+        .primary-action-btn, .secondary-action-btn {
+            width: 100% !important; justify-content: center !important;
+            padding: 13px !important; font-size: 14px !important;
+        }
+
+        /* ---- PREVIEW STAT GRID ---- */
+        .preview-stat-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 10px !important;
+        }
+        .stat-box { padding: 10px !important; }
+        .stat-value { font-size: 18px !important; }
+
+        /* ---- TABLES: horizontal scroll ---- */
+        .history-table-container, .spooler-table-container,
+        .documents-table-container, .queue-table-wrapper {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+        }
+        .history-table-container .dashboard-table,
+        .spooler-table-container .dashboard-table,
+        .documents-table-container .dashboard-table {
+            min-width: 560px !important;
+            font-size: 12px !important;
+        }
+        .dashboard-table th, .dashboard-table td {
+            padding: 8px 10px !important;
+            font-size: 11px !important;
+        }
+
+        /* ---- PRINTER NODE ITEMS ---- */
+        .printer-network-box { display: flex !important; flex-direction: column !important; gap: 10px !important; }
+        .printer-node-item {
+            display: flex !important; flex-direction: column !important;
+            align-items: flex-start !important; gap: 10px !important;
+            padding: 12px !important; width: 100% !important;
+        }
+        .printer-node-item > .node-icon { display: none !important; }
+        .node-info { width: 100% !important; min-width: 0 !important; }
+        .node-name {
+            font-size: 13px !important; white-space: normal !important;
+            word-break: break-word !important; overflow: visible !important;
+        }
+        .node-loc {
+            font-size: 10px !important; white-space: normal !important;
+            word-break: break-all !important; overflow: visible !important;
+            line-height: 1.4 !important;
+        }
+        .node-stats { gap: 5px !important; flex-wrap: wrap !important; }
+        .node-stat-pill { font-size: 9px !important; padding: 2px 5px !important; }
+        .printer-node-item .node-actions {
+            width: 100% !important; margin-left: 0 !important;
+            flex-direction: row !important; flex-wrap: wrap !important; gap: 8px !important;
+        }
+        .printer-node-item .node-actions button { flex: 1 !important; min-width: 80px !important; }
+        .node-status-select { flex: 1 !important; min-width: 90px !important; padding: 7px 6px !important; font-size: 12px !important; }
+
+        /* ---- WORKER CONTROLLER ---- */
+        .worker-status-badge {
+            display: flex !important; flex-direction: column !important;
+            align-items: flex-start !important; gap: 8px !important; padding: 10px !important;
+        }
+        .worker-actions {
+            display: flex !important; flex-direction: column !important; gap: 10px !important; margin-top: 10px !important;
+        }
+        .worker-actions .primary-action-btn,
+        .worker-actions .secondary-action-btn-small {
+            width: 100% !important; text-align: center !important; justify-content: center !important;
+        }
+
+        /* ---- QUEUE SUMMARY BANNER ---- */
+        .queue-summary-banner {
+            display: flex !important; flex-direction: column !important;
+            gap: 6px !important; padding: 10px 12px !important; font-size: 12px !important;
+        }
+
+        /* ---- CONSOLE LOG ---- */
+        .console-box { height: 200px !important; padding: 10px !important; }
+        .console-output { font-size: 10px !important; }
+        .console-line { white-space: pre-wrap !important; word-break: break-all !important; }
+
+        /* ---- MODALS: slide up from bottom ---- */
+        .modal-overlay { z-index: 100000 !important; align-items: flex-end !important; padding: 0 !important; }
+        .checkout-choice-box {
+            width: 100% !important; max-width: 100% !important;
+            border-radius: 20px 20px 0 0 !important;
+            padding: 18px 14px 36px 14px !important; margin: 0 !important;
+            max-height: 92vh !important; overflow-y: auto !important;
+        }
+        .modal-container {
+            width: 100% !important; max-width: 100% !important; height: 88vh !important;
+            padding: 16px 14px !important; border-radius: 20px 20px 0 0 !important; margin: 0 !important;
+        }
+
+        /* ---- BKASH MODAL FIX: confirm button always reachable ---- */
+        .bkash-modal-box {
+            width: 100% !important; max-width: 100% !important;
+            border-radius: 20px 20px 0 0 !important;
+            padding: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            max-height: 90vh !important;
+            overflow: hidden !important;
+        }
+        .bkash-logo-banner {
+            flex-shrink: 0 !important;
+            padding: 16px 16px 10px 16px !important;
+        }
+        .bkash-modal-content {
+            flex: 1 !important;
+            overflow-y: auto !important;
+            padding: 0 16px !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        .bkash-step { padding: 10px 0 !important; }
+        .bkash-input {
+            width: 100% !important;
+            font-size: 16px !important;
+            padding: 12px !important;
+        }
+        /* Confirm + Cancel always stick to bottom */
+        .bkash-modal-actions {
+            flex-shrink: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            padding: 12px 16px 20px !important;
+            border-top: 1px solid rgba(255,255,255,0.07) !important;
+            background: inherit !important;
+        }
+        .bkash-btn-confirm, .bkash-btn-cancel {
+            width: 100% !important;
+            padding: 14px !important;
+            font-size: 15px !important;
+            border-radius: 10px !important;
+        }
+
+        /* ---- PERFORMANCE: Remove all blur/backdrop-filter on mobile ---- */
+        .app-header,
+        .glass-card,
+        #mobile-bottom-nav,
+        .modal-overlay,
+        .checkout-choice-box,
+        .bkash-modal-box,
+        .notification-toast,
+        .card,
+        .sim-panel-grid,
+        [class*="glass"],
+        [style*="backdrop-filter"],
+        [style*="blur"] {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        /* Compensate: give glass cards a solid dark bg since blur is removed */
+        .glass-card {
+            background-color: rgba(19, 27, 46, 0.98) !important;
+        }
+        .app-header {
+            background-color: rgba(11, 15, 25, 0.99) !important;
+        }
+        #mobile-bottom-nav {
+            background: rgba(10, 15, 28, 0.99) !important;
+        }
+
+
+        /* ---- LOGIN / REGISTER BOX ---- */
+        .auth-card-wrapper, .login-box, .register-box {
+            width: 100% !important; max-width: 100% !important;
+            padding: 18px 14px !important; border-radius: 16px !important;
+        }
+
+        /* ---- REGISTER PRINTER FORM ---- */
+        #form-register-printer .sim-select-field,
+        #form-register-printer select,
+        #form-register-printer input {
+            width: 100% !important; font-size: 14px !important;
+        }
+
+        /* ---- INPUTS & SELECTS (prevent iOS zoom) ---- */
+        input, select, textarea {
+            font-size: 16px !important;
+        }
+
+        /* ---- SIM PANEL GRID ---- */
+        .sim-panel-grid {
+            display: grid !important;
+            grid-template-columns: 1fr !important; gap: 12px !important;
+        }
+
+        /* ---- NOTIFICATION TOASTS ---- */
+        .notification-container {
+            top: auto !important; bottom: 72px !important;
+            right: 10px !important; left: 10px !important; width: auto !important;
+        }
+        .notification-toast { width: 100% !important; }
+
+        /* ---- HIDE SIMULATION BAR ON MOBILE ---- */
+        .simulation-bar { display: none !important; }
+
+        /* ---- SECTION HEADERS ---- */
+        .section-title { font-size: 18px !important; }
+        .section-subtitle { font-size: 12px !important; }
+    }
+
+    /* ---- VERY SMALL PHONES (< 480px) ---- */
+    @media (max-width: 480px) {
+        .hero-title { font-size: 20px !important; }
+        .card { padding: 12px !important; }
+        .preview-stat-grid { grid-template-columns: 1fr !important; }
+        .stat-value { font-size: 16px !important; }
+        .checkout-choice-box { padding: 14px 12px !important; }
+        input, select, textarea { font-size: 16px !important; }
+        .dashboard-table th, .dashboard-table td { padding: 6px 8px !important; font-size: 10px !important; }
+    }
+    </style>
+</head>
+<body class="dark-theme">
+    
+    <!-- Top Premium Navbar -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-area" id="nav-logo">
+                <i class="fa-solid fa-cloud-arrow-up logo-icon animate-pulse"></i>
+                <span class="logo-text">UCPS<span class="logo-dot">.</span></span>
+            </div>
+            <nav class="main-nav" id="main-nav-desktop">
+                <button class="nav-btn active" id="btn-view-landing"><i class="fa-solid fa-house"></i> Home</button>
+                <button class="nav-btn" id="btn-view-user" style="display: none;"><i class="fa-solid fa-user"></i> User Portal</button>
+                <button class="nav-btn" id="btn-view-operator" style="display: none;"><i class="fa-solid fa-print"></i> Operator Spooler</button>
+            </nav>
+            <div style="display:flex; align-items:center; gap: 12px;">
+                <div class="profile-badge hidden" id="user-profile-badge" style="cursor: pointer;">
+                    <div id="user-avatar-wrapper" style="display: flex; align-items: center; justify-content: center; margin-right: 4px;">
+                        <i class="fa-solid fa-circle-user avatar-icon" style="font-size:1.5rem; color:var(--color-primary);"></i>
+                    </div>
+                    <div class="profile-info" style="display:flex; flex-direction:column; text-align:left;">
+                        <span class="p-username" id="session-username" style="font-size:12px; font-weight:600; color:var(--text-main); line-height:1.2;">Wahidur Rahman</span>
+                        <span class="p-role" id="session-role" style="font-size:10px; color:var(--text-muted);">EWU Student</span>
+                    </div>
+                    <button class="btn-logout" id="btn-logout" title="Log Out" style="background:transparent; border:none; color:var(--color-danger); cursor:pointer; font-size:12px; margin-left:8px; transition:var(--transition-smooth);"><i class="fa-solid fa-right-from-bracket"></i></button>
+                </div>
+                
+                <div class="status-indicator">
+                    <span class="status-dot online"></span>
+                    <span class="status-label mobile-hide">Cloud: Online</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav id="mobile-bottom-nav" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:rgba(10,15,28,0.97); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-top:1px solid rgba(255,255,255,0.1); padding:6px 4px; flex-direction:row; justify-content:space-around; align-items:center;">
+        <button id="mob-btn-landing" data-target="landing" style="display:flex; flex-direction:column; align-items:center; gap:3px; padding:6px 14px; background:transparent; border:none; color:#0ea5e9; font-family:'Outfit',sans-serif; font-size:10px; font-weight:500; cursor:pointer; border-radius:10px; min-width:60px; transition:all 0.2s;">
+            <i class="fa-solid fa-house" style="font-size:20px; filter:drop-shadow(0 0 6px #0ea5e9);"></i>
+            <span>Home</span>
+        </button>
+        <button id="mob-btn-user" data-target="user" style="display:none; flex-direction:column; align-items:center; gap:3px; padding:6px 14px; background:transparent; border:none; color:#94a3b8; font-family:'Outfit',sans-serif; font-size:10px; font-weight:500; cursor:pointer; border-radius:10px; min-width:60px; transition:all 0.2s;">
+            <i class="fa-solid fa-file-arrow-up" style="font-size:20px;"></i>
+            <span>Print</span>
+        </button>
+        <button id="mob-btn-operator" data-target="operator" style="display:none; flex-direction:column; align-items:center; gap:3px; padding:6px 14px; background:transparent; border:none; color:#94a3b8; font-family:'Outfit',sans-serif; font-size:10px; font-weight:500; cursor:pointer; border-radius:10px; min-width:60px; transition:all 0.2s;">
+            <i class="fa-solid fa-print" style="font-size:20px;"></i>
+            <span>Spooler</span>
+        </button>
+        <button id="mob-btn-account" style="display:flex; flex-direction:column; align-items:center; gap:3px; padding:6px 14px; background:transparent; border:none; color:#94a3b8; font-family:'Outfit',sans-serif; font-size:10px; font-weight:500; cursor:pointer; border-radius:10px; min-width:60px; transition:all 0.2s;">
+            <i class="fa-solid fa-circle-user" style="font-size:20px;"></i>
+            <span>Account</span>
+        </button>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="app-main-content">
+        
+        <!-- ==================================================== -->
+        <!-- 1. LANDING/SHOWCASE VIEW -->
+        <!-- ==================================================== -->
+        <section id="view-landing" class="view-section active animate-fade-in">
+            <div class="hero-section">
+                <div class="hero-text-content">
+                    <span class="badge-new">CSE Fest 2026 Showcase</span>
+                    <h1 class="hero-title">Transform Any Printer Into a <span class="gradient-text">Smart Cloud Printer</span></h1>
+                    <p class="hero-subtitle">
+                        Scan. Upload. Print. No drivers, no cables, and no messaging app files. The Universal Cloud Print System (UCPS) provides a secure, direct link between your device and physical spoolers.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="cta-primary-btn" id="btn-start-user">
+                            <i class="fa-solid fa-rocket"></i> Launch User Dashboard
+                        </button>
+                        <button class="cta-secondary-btn" id="btn-start-operator">
+                            <i class="fa-solid fa-gears"></i> Open Operator Spooler
+                        </button>
+                        <button class="cta-secondary-btn" id="btn-start-guest" style="border-color: var(--color-success); color: var(--color-success);">
+                            <i class="fa-solid fa-print"></i> Instant Guest Print
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-graphic">
+                    <div class="interactive-preview-card glass-card">
+                        <div class="preview-header">
+                            <span class="preview-dot red"></span>
+                            <span class="preview-dot yellow"></span>
+                            <span class="preview-dot green"></span>
+                            <span class="preview-title">UCPS Real-Time Simulation</span>
+                        </div>
+                        <div class="preview-body">
+                            <div class="preview-stat-grid">
+                                <div class="stat-card">
+                                    <span class="stat-num text-teal">60%</span>
+                                    <span class="stat-name">Fewer Steps</span>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-num text-purple">83%</span>
+                                    <span class="stat-name">Less Workload</span>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-num text-blue">80%</span>
+                                    <span class="stat-name">Faster Prints</span>
+                                </div>
+                            </div>
+                            <div class="preview-log-console">
+                                <div class="console-line"><span class="console-timestamp">[12:00:01]</span> <span class="console-info">SYSTEM:</span> Initializing cloud connection...</div>
+                                <div class="console-line"><span class="console-timestamp">[12:00:02]</span> <span class="console-info">QUEUE:</span> FIFO Scheduler loaded. Status: ONLINE.</div>
+                                <div class="console-line cursor-blink"><span class="console-timestamp">[12:00:03]</span> <span class="console-success">READY:</span> Scan QR code to bind session...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="features-section">
+                <h2 class="section-title-centered">Engineered to Solve Modern Printing Bottlenecks</h2>
+                <div class="features-grid">
+                    <div class="feature-card glass-card">
+                        <div class="feature-icon bg-blue-trans"><i class="fa-solid fa-qrcode"></i></div>
+                        <h3 class="feature-heading">QR Printer Pairing</h3>
+                        <p class="feature-text">Skip printer list configuration. Scan the QR code stuck to the printer to bind your session instantly.</p>
+                    </div>
+                    <div class="feature-card glass-card">
+                        <div class="feature-icon bg-green-trans"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3 class="feature-heading">Secure Print Buffer</h3>
+                        <p class="feature-text">Uploaded documents undergo MIME analysis, randomized filename hashing, and immediate post-print deletion.</p>
+                    </div>
+                    <div class="feature-card glass-card">
+                        <div class="feature-icon bg-purple-trans"><i class="fa-solid fa-list-ol"></i></div>
+                        <h3 class="feature-heading">Intelligent FIFO Queue</h3>
+                        <p class="feature-text">Database-backed First-In-First-Out scheduler processes concurrent uploads with atomic row-locking.</p>
+                    </div>
+                    <div class="feature-card glass-card">
+                        <div class="feature-icon bg-red-trans"><i class="fa-solid fa-bolt"></i></div>
+                        <h3 class="feature-heading">Plug-and-Play Legacy</h3>
+                        <p class="feature-text">Zero hardware alterations. Middleware script communicates silently with SumatraPDF on Windows and CUPS on Linux.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guide & Desktop Client Download Section -->
+            <div class="features-section" style="margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 50px;">
+                <h2 class="section-title-centered" style="margin-bottom: 30px;"><i class="fa-solid fa-cloud-arrow-down text-purple"></i> UCPS Spooler Client Installation Guide</h2>
+                
+                <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; text-align: left; max-width: 1000px; margin: 0 auto;">
+                    <!-- Left column: Download Card -->
+                    <div class="feature-card glass-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 35px; text-align: center; gap: 15px;">
+                        <i class="fa-solid fa-laptop-code" style="font-size: 3.5rem; color: var(--color-primary); filter: drop-shadow(0 0 12px var(--color-primary));"></i>
+                        <h3 style="font-size: 20px; font-weight: 700; color: var(--text-main); margin: 0;">UCPS Desktop Client</h3>
+                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin: 0;">
+                            Official Windows background printing middleware. Listens to the cloud spooler API in real-time, downloads print-ready jobs, and dispatches them to local hardware.
+                        </p>
+                        
+                        <a href="UCPS.exe" download class="cta-primary-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 10px; font-size: 13px; padding: 12px; cursor: pointer;">
+                            <i class="fa-solid fa-download"></i> Download UCPS.exe for Windows
+                        </a>
+                        <span style="font-size: 10px; color: var(--text-muted);"><i class="fa-solid fa-shield"></i> Clean Binary (CSE Fest 2026 Release)</span>
+                    </div>
+                    
+                    <!-- Right column: Instructions Card -->
+                    <div class="feature-card glass-card" style="padding: 30px; display: flex; flex-direction: column; gap: 16px;">
+                        <h3 style="font-size: 18px; font-weight: 700; color: var(--color-secondary); margin: 0;"><i class="fa-solid fa-circle-info"></i> Setup Instructions</h3>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 12px; line-height: 1.5; color: var(--text-main);">
+                            <!-- Step 1 -->
+                            <div style="display: flex; gap: 10px;">
+                                <span style="background: var(--color-primary); color: #fff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0;">1</span>
+                                <div>
+                                    <strong>Download SumatraPDF:</strong> Download the official portable SumatraPDF executable from <a href="https://www.sumatrapdfreader.org/download-free-pdf-viewer" target="_blank" class="text-teal" style="text-decoration: underline;">SumatraPDF Reader Website</a>.
+                                </div>
+                            </div>
+                            
+                            <!-- Step 2 -->
+                            <div style="display: flex; gap: 10px;">
+                                <span style="background: var(--color-primary); color: #fff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0;">2</span>
+                                <div>
+                                    <strong>Place SumatraPDF:</strong> Copy the downloaded <code>SumatraPDF.exe</code> file and place it in the <strong>same folder</strong> where you run <code>UCPS.exe</code> (or add it to your Windows System PATH).
+                                </div>
+                            </div>
+                            
+                            <!-- Step 3 -->
+                            <div style="display: flex; gap: 10px;">
+                                <span style="background: var(--color-primary); color: #fff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0;">3</span>
+                                <div>
+                                    <strong>Run UCPS Client:</strong> Double-click <code>UCPS.exe</code> to open the interface. When prompted, log in with your registered shop operator credentials.
+                                </div>
+                            </div>
+                            
+                            <!-- Step 4 -->
+                            <div style="display: flex; gap: 10px;">
+                                <span style="background: var(--color-primary); color: #fff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0;">4</span>
+                                <div>
+                                    <strong>Start Spooling:</strong> Once authenticated, the desktop client automatically binds to your shop's printer and listens for jobs. All incoming student print jobs will compile and print automatically.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- AUTHENTICATION VIEW (LOGIN & REGISTRATION) -->
+        <!-- ==================================================== -->
+        <section id="view-auth" class="view-section animate-fade-in" style="padding: 40px 0 60px 0;">
+            <div style="max-width: 480px; margin: 0 auto;">
+                <div class="auth-card glass-card" style="padding: 30px;">
+                    <div class="auth-tabs" style="display:flex; border-bottom:1px solid var(--border-color); margin-bottom:20px;">
+                        <button class="auth-tab-btn active" id="tab-login" style="flex:1; background:transparent; border:none; padding:12px; font-family:var(--font-heading); font-size:15px; font-weight:600; color:var(--text-main); border-bottom:2px solid var(--color-primary); cursor:pointer; transition:var(--transition-smooth);">Sign In</button>
+                        <button class="auth-tab-btn" id="tab-signup" style="flex:1; background:transparent; border:none; padding:12px; font-family:var(--font-heading); font-size:15px; font-weight:600; color:var(--text-muted); cursor:pointer; transition:var(--transition-smooth);">Register Account</button>
+                    </div>
+                    
+                    <!-- Role Selector -->
+                    <div class="role-selector-bar" style="background:rgba(0,0,0,0.2); padding:6px; border-radius:8px; border:1px solid var(--border-color); display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
+                        <span class="field-label" style="margin:0 0 0 8px; font-size:11px;">Select Role:</span>
+                        <div class="role-radios" style="display:flex; gap:6px;">
+                            <label class="role-radio-label active" id="label-role-student" style="cursor:pointer; font-size:12px; font-weight:600; padding:6px 12px; border-radius:6px; background:var(--color-primary); color:#fff; display:flex; align-items:center; gap:6px; transition:var(--transition-smooth);">
+                                <input type="radio" name="auth-role" value="student" checked class="hidden-radio" style="display:none;">
+                                <i class="fa-solid fa-graduation-cap"></i> Student/User
+                            </label>
+                            <label class="role-radio-label" id="label-role-operator" style="cursor:pointer; font-size:12px; font-weight:600; padding:6px 12px; border-radius:6px; background:transparent; color:var(--text-muted); display:flex; align-items:center; gap:6px; transition:var(--transition-smooth);">
+                                <input type="radio" name="auth-role" value="operator" class="hidden-radio" style="display:none;">
+                                <i class="fa-solid fa-shop"></i> Shop Operator
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- LOGIN FORM BLOCK -->
+                    <div class="auth-form-block" id="form-login-block">
+                        <h3 class="auth-form-title" style="font-size:18px; font-weight:700; margin-bottom:4px;" id="login-title-text">Student Sign In</h3>
+                        <p class="auth-form-desc" style="font-size:12px; color:var(--text-muted); margin-bottom:20px;" id="login-desc-text">Sign in using your student portal email to upload files.</p>
+                        <form id="form-login" onsubmit="return false;">
+                            <div class="form-group" style="margin-bottom:16px;">
+                                <label for="login-email" class="field-label">Email Address</label>
+                                <input type="email" id="login-email" class="sim-select-field" placeholder="e.g. name@student.ewu.edu.bd" required style="width:100%;">
+                            </div>
+                            <div class="form-group" style="margin-bottom:20px;">
+                                <label for="login-password" class="field-label">Password</label>
+                                <div style="position: relative; display: flex; align-items: center;">
+                                    <input type="password" id="login-password" class="sim-select-field" placeholder="••••••••" required style="width:100%; padding-right: 40px;">
+                                    <i class="fa-solid fa-eye" id="toggle-login-password" style="position: absolute; right: 12px; cursor: pointer; color: var(--text-muted); font-size: 14px; transition: var(--transition-smooth);"></i>
+                                </div>
+                            </div>
+                            <button type="submit" class="primary-action-btn" id="btn-submit-login">
+                                <i class="fa-solid fa-right-to-bracket"></i> Sign In to Portal
+                            </button>
+                            <div style="text-align: center; margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+                                <a href="#" id="link-start-guest" style="font-size: 13px; color: var(--color-success); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+                                    <i class="fa-solid fa-user-ninja"></i> Instant Guest Print (No Account)
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- REGISTRATION FORM BLOCK -->
+                    <div class="auth-form-block hidden" id="form-signup-block">
+                        <!-- Student signup form fields -->
+                        <div id="signup-fields-student">
+                            <h3 class="auth-form-title" style="font-size:18px; font-weight:700; margin-bottom:4px;">Create Student Account</h3>
+                            <p class="auth-form-desc" style="font-size:12px; color:var(--text-muted); margin-bottom:20px;">Register to send documents wirelessly to campus shops.</p>
+                            <form id="form-signup-student" onsubmit="return false;">
+                                <div class="form-group-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom:12px;">
+                                    <div class="form-group">
+                                        <label for="student-name" class="field-label">Full Name</label>
+                                        <input type="text" id="student-name" class="sim-select-field" placeholder="e.g. Wahidur Rahman" required style="width:100%;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="student-id" class="field-label">Student ID</label>
+                                        <input type="text" id="student-id" class="sim-select-field" placeholder="e.g. 2022-1-60-XXX" required style="width:100%;">
+                                    </div>
+                                </div>
+                                <div class="form-group-row" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 12px; margin-bottom:12px;">
+                                    <div class="form-group">
+                                        <label for="student-email" class="field-label">University Email</label>
+                                        <input type="email" id="student-email" class="sim-select-field" placeholder="e.g. name@ewu.edu.bd" required style="width:100%;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="student-dept" class="field-label">Department</label>
+                                        <input type="text" id="student-dept" class="sim-select-field" placeholder="e.g. CSE" required style="width:100%;">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-bottom:20px;">
+                                    <label for="student-password" class="field-label">Account Password</label>
+                                    <div style="position: relative; display: flex; align-items: center;">
+                                        <input type="password" id="student-password" class="sim-select-field" placeholder="Minimum 6 characters" required style="width:100%; padding-right: 40px;">
+                                        <i class="fa-solid fa-eye" id="toggle-student-password" style="position: absolute; right: 12px; cursor: pointer; color: var(--text-muted); font-size: 14px; transition: var(--transition-smooth);"></i>
+                                    </div>
+                                </div>
+                                <button type="submit" class="primary-action-btn" id="btn-submit-signup-student" style="background-color: var(--color-secondary);">
+                                    <i class="fa-solid fa-user-plus"></i> Create Student Account
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Operator signup form fields -->
+                        <div id="signup-fields-operator" class="hidden">
+                            <h3 class="auth-form-title" style="font-size:18px; font-weight:700; margin-bottom:4px;">Register Print Shop</h3>
+                            <p class="auth-form-desc" style="font-size:12px; color:var(--text-muted); margin-bottom:20px;">Add your shop location to the UCPS print network directory.</p>
+                            <form id="form-signup-operator" onsubmit="return false;">
+                                <div class="form-group-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom:12px;">
+                                    <div class="form-group">
+                                        <label for="operator-shop" class="field-label">Print Shop Name</label>
+                                        <input type="text" id="operator-shop" class="sim-select-field" placeholder="e.g. EWU Lab 3 Spooler" required style="width:100%;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="operator-name" class="field-label">Owner Full Name</label>
+                                        <input type="text" id="operator-name" class="sim-select-field" placeholder="e.g. Maloy Roy Orko" required style="width:100%;">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-bottom:12px;">
+                                    <label for="operator-email" class="field-label">Business Email</label>
+                                    <input type="email" id="operator-email" class="sim-select-field" placeholder="e.g. shop@email.com" required style="width:100%;">
+                                </div>
+                                <div class="form-group" style="margin-bottom:20px;">
+                                    <label for="operator-password" class="field-label">Account Password</label>
+                                    <div style="position: relative; display: flex; align-items: center;">
+                                        <input type="password" id="operator-password" class="sim-select-field" placeholder="Minimum 6 characters" required style="width:100%; padding-right: 40px;">
+                                        <i class="fa-solid fa-eye" id="toggle-operator-password" style="position: absolute; right: 12px; cursor: pointer; color: var(--text-muted); font-size: 14px; transition: var(--transition-smooth);"></i>
+                                    </div>
+                                </div>
+                                <button type="submit" class="primary-action-btn" id="btn-submit-signup-operator" style="background-color: var(--color-secondary);">
+                                    <i class="fa-solid fa-house-chimney-medical"></i> Register Shop Node
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- GUEST PRINT VIEW (NO ACCOUNT) -->
+        <!-- ==================================================== -->
+        <section id="view-guest-print" class="view-section animate-fade-in">
+            <div class="dashboard-grid">
+                
+                <!-- Guest Left Panel: Connection & Setup -->
+                <div class="dash-left-column">
+                    <!-- Card 1: Enter Printer ID -->
+                    <div class="card glass-card">
+                        <h2 class="card-title" style="color: var(--color-secondary);"><i class="fa-solid fa-link icon-accent"></i> Step 1: Connect to Printer</h2>
+                        <div class="pairing-box" style="padding: 10px 0;">
+                            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">
+                                Enter the unique 4-character/digit Printer ID (e.g. 1001, 1002, PRN001) or scan the printer's QR label.
+                            </p>
+                            
+                            <div class="manual-connect-group" style="position: relative; width: 100%; margin-bottom: 15px;">
+                                <input type="text" id="guest-printer-id" placeholder="Enter Printer ID (e.g. 1001)" class="sim-select-field" style="width: 100%; text-transform: uppercase; background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 100px 12px 12px; height: 46px; font-size: 14px; margin: 0; box-sizing: border-box;">
+                                <button class="primary-action-btn" id="btn-guest-connect-printer" style="position: absolute; right: 4px; top: 4px; bottom: 4px; width: auto !important; padding: 0 16px; height: 38px; border-radius: 6px; font-size: 13px; font-weight: 600; margin: 0; display: flex; align-items: center; justify-content: center;">
+                                    Connect
+                                </button>
+                            </div>
+                                         <div class="connect-divider" id="guest-connect-divider" style="display: flex; align-items: center; justify-content: center; margin: 15px 0; color: var(--text-muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                                <span style="flex: 1; height: 1px; background: var(--border-color); margin-right: 12px; opacity: 0.5;"></span>
+                                OR
+                                <span style="flex: 1; height: 1px; background: var(--border-color); margin-left: 12px; opacity: 0.5;"></span>
+                            </div>
+                            
+                            <div class="qr-connect-group" id="guest-qr-group" style="margin-bottom: 15px;">
+                                <button class="primary-action-btn" id="btn-guest-scan-qr" style="width: 100%; padding: 0 15px; height: 46px; background: linear-gradient(135deg, var(--color-secondary), #3b82f6); border-color: transparent; border-radius: 8px; font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0; box-shadow: 0 4px 10px rgba(59,130,246,0.15); transition: all 0.2s ease;">
+                                    <i class="fa-solid fa-camera" style="font-size: 15px;"></i> Scan Printer QR Code
+                                </button>
+                            </div>
+                            
+                            <!-- Connection Status Indicator -->
+                            <div id="guest-connection-status" class="status-indicator-box" style="display: none; padding: 12px; border-radius: 8px; font-size: 13px; font-weight: 500; border: 1px solid transparent; display: flex; align-items: center; gap: 8px;">
+                                <!-- Will be updated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Upload File & Print Settings (Visible only when connected) -->
+                    <div class="card glass-card" id="guest-print-controls" style="opacity: 0.5; pointer-events: none; margin-top: 20px; transition: all 0.3s ease;">
+                        <h2 class="card-title"><i class="fa-solid fa-cloud-arrow-up icon-accent"></i> Step 2: Upload & Configure Print</h2>
+                        
+                        <div class="upload-zone" id="guest-drop-zone">
+                            <input type="file" id="guest-file-input" accept=".pdf,.png,.jpg,.jpeg" style="display:none;">
+                            <div class="file-drop-zone" id="guest-click-zone">
+                                <i class="fa-solid fa-file-pdf drop-icon text-teal" id="guest-upload-icon-status"></i>
+                                <p class="drop-text" id="guest-upload-text">Drag & drop your PDF or Image here</p>
+                                <span class="drop-subtext" id="guest-upload-subtext">Supports PDF, PNG, JPG (Max 10MB)</span>
+                            </div>
+                        </div>
+
+                        <!-- Printing Settings Form -->
+                        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+                            <div class="form-grid-2col">
+                                <div class="form-group" style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                                    <label class="form-label" style="font-size: 11px; color: var(--text-secondary);">Paper Size</label>
+                                    <select class="sim-select-field" id="guest-print-size" style="background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px; font-size: 13px;">
+                                        <option value="A4">A4 (Standard)</option>
+                                        <option value="Letter">Letter</option>
+                                        <option value="Legal">Legal</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                                    <label class="form-label" style="font-size: 11px; color: var(--text-secondary);">Color Mode</label>
+                                    <select class="sim-select-field" id="guest-print-color" style="background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px; font-size: 13px;">
+                                        <option value="monochrome">Monochrome (B&W) — 5.00 BDT/pg</option>
+                                        <option value="color">Color — 15.00 BDT/pg</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-grid-2col">
+                                <div class="form-group" style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                                    <label class="form-label" style="font-size: 11px; color: var(--text-secondary);">Copies</label>
+                                    <input type="number" id="guest-print-copies" value="1" min="1" class="sim-select-field" style="background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px; font-size: 13px;">
+                                </div>
+                                <div class="form-group" style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                                    <label class="form-label" style="font-size: 11px; color: var(--text-secondary);">Page Range</label>
+                                    <select id="guest-print-range-select" class="sim-select-field" style="background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px; font-size: 13px;">
+                                        <option value="all" selected>All Pages</option>
+                                        <option value="1">Page 1 Only</option>
+                                        <option value="1-2">Pages 1-2</option>
+                                        <option value="1-3">Pages 1-3</option>
+                                        <option value="custom">Custom Range...</option>
+                                    </select>
+                                    <input type="text" id="guest-print-range" class="sim-select-field hidden" value="all" placeholder="e.g. 1-3, 5" style="margin-top: 6px; background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px; font-size: 13px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guest Right Panel: Preview & Checkout -->
+                <div class="dash-right-column">
+                    <!-- Card 3: Live Preview & Range Calculation -->
+                    <div class="card glass-card" id="guest-preview-card" style="opacity: 0.5; pointer-events: none; transition: all 0.3s ease;">
+                        <h2 class="card-title"><i class="fa-solid fa-magnifying-glass icon-accent"></i> Document Preview</h2>
+                        <div class="preview-box" id="guest-preview-box" style="height: 250px;">
+                            <div style="text-align: center; color: var(--text-muted); font-size: 13px; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; gap: 10px;">
+                                <i class="fa-solid fa-file-invoice" style="font-size: 3rem; opacity: 0.4;"></i>
+                                No document uploaded yet.
+                            </div>
+                        </div>
+                        
+                        <!-- PDF Page Navigation Controls -->
+                        <div id="guest-pdf-nav-controls" class="hidden" style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; background: rgba(255,255,255,0.05); padding: 8px 15px; border-radius: 8px;">
+                            <button class="secondary-action-btn-small" id="btn-guest-pdf-prev" style="margin: 0; padding: 6px 12px;"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+                            <span id="guest-pdf-page-num" style="font-size: 12px; color: var(--text-main); font-weight: 600;">Page 1 of 1</span>
+                            <button class="secondary-action-btn-small" id="btn-guest-pdf-next" style="margin: 0; padding: 6px 12px;">Next <i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Checkout & Payment -->
+                    <div class="card glass-card" id="guest-checkout-card" style="opacity: 0.5; pointer-events: none; transition: all 0.3s ease; margin-top: 20px;">
+                        <h2 class="card-title"><i class="fa-solid fa-credit-card icon-accent"></i> Step 3: Checkout & Pay</h2>
+                        <div class="checkout-box">
+                            <div class="checkout-summary-row">
+                                <span>Estimated Page Count:</span>
+                                <strong id="guest-checkout-pages" class="text-teal">1 page(s)</strong>
+                            </div>
+                            <div class="checkout-summary-row" style="margin-top: 10px;">
+                                <span>Total Price:</span>
+                                <strong id="guest-checkout-price" class="text-teal">5.00 BDT</strong>
+                            </div>
+                            
+                            <!-- Payment Method Selector -->
+                            <div class="payment-method-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
+                                <div class="pay-option" id="guest-pay-option-bkash">
+                                    <img src="https://www.logo.wine/a/logo/BKash/BKash-Icon-Logo.wine.svg" alt="bKash" style="height: 35px; width: auto;">
+                                    <span>bKash (Instant)</span>
+                                </div>
+                                <div class="pay-option" id="guest-pay-option-cash">
+                                    <i class="fa-solid fa-money-bill-1-wave" style="font-size: 20px; color: var(--color-success);"></i>
+                                    <span>Pay Cash (Operator Approval)</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                                <button class="primary-action-btn" id="btn-guest-pay-print" disabled>
+                                    <i class="fa-solid fa-print"></i> Confirm & Pay
+                                </button>
+                                <button class="secondary-action-btn-small" id="btn-guest-cancel-return" style="padding: 12px; font-weight: bold; border-radius: 8px;">
+                                    <i class="fa-solid fa-house"></i> Cancel & Return Home
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 2. USER DASHBOARD VIEW -->
+        <!-- ==================================================== -->
+        <section id="view-user" class="view-section animate-fade-in">
+            <div class="dashboard-grid">
+                
+                <!-- User Left Panel: Pairing and Upload -->
+                <div class="dash-left-column">
+                    
+                    <!-- Card 1: QR Code Scanner & Store Directory -->
+                    <div class="card glass-card" id="card-pairing">
+                        <h2 class="card-title"><i class="fa-solid fa-qrcode icon-accent"></i> Step 1: Printer Association</h2>
+                        <div class="pairing-box">
+                            <div class="unpaired-state" id="panel-unpaired">
+                                <div class="simulated-camera">
+                                    <div class="scanner-laser"></div>
+                                    <div class="camera-lens">
+                                        <i class="fa-solid fa-qrcode camera-qr-placeholder"></i>
+                                    </div>
+                                    <div class="camera-helper-text">Pairing required to upload files</div>
+                                </div>
+                                <button class="primary-action-btn" id="btn-simulate-scan">
+                                    <i class="fa-solid fa-camera"></i> Scan Printer QR Code
+                                </button>
+                                
+                                <div class="pairing-divider"><span>OR</span></div>
+                                
+                                <div class="manual-directory-search">
+                                    <label class="field-label" for="input-manual-printer">Connect by Printer ID</label>
+                                    <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+                                        <input type="text" id="input-manual-printer" class="sim-select-field" placeholder="Enter Printer ID (e.g. 1001)" style="flex: 1; margin: 0; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); padding: 8px 12px; border-radius: 6px;">
+                                        <button class="secondary-action-btn-small" id="btn-pair-manual" style="margin: 0; width: auto; white-space: nowrap; padding: 0 15px; border-radius: 6px; font-weight: 600;">
+                                            <i class="fa-solid fa-link"></i> Connect
+                                        </button>
+                                    </div>
+                                    <div class="pairing-divider" style="margin: 15px 0 12px 0; text-align: center; font-size: 10px; color: var(--text-muted); position: relative;"><span style="background: var(--bg-surface); padding: 0 10px; position: relative; z-index: 1;">OR SELECT FROM ACTIVE LIST</span></div>
+                                    <select id="select-manual-printer" class="sim-select-field" style="width: 100%; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-main); padding: 8px 12px; border-radius: 6px;">
+                                        <option value="" disabled selected>-- Select Shop / Room --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="paired-state hidden" id="panel-paired">
+                                <div class="paired-printer-badge">
+                                    <div class="printer-status-icon"><i class="fa-solid fa-print"></i></div>
+                                    <div class="printer-details">
+                                        <h3 class="paired-name" id="paired-printer-name">HP LaserJet Pro 400</h3>
+                                        <p class="paired-location" id="paired-printer-location">Room 304 (Lab 3)</p>
+                                    </div>
+                                </div>
+                                <button class="secondary-action-btn-small" id="btn-unpair">
+                                    <i class="fa-solid fa-link-slash"></i> Change Printer (Unpair)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Document Upload -->
+                    <div class="card glass-card" id="card-upload">
+                        <h2 class="card-title"><i class="fa-solid fa-cloud-arrow-up icon-accent"></i> Step 2: Document Upload</h2>
+                        <div class="upload-box">
+                            <div class="upload-zone" id="drop-zone">
+                                <input type="file" id="file-input" accept=".pdf,.png,.jpg,.jpeg" class="hidden-input">
+                                <div class="upload-instructions">
+                                    <i class="fa-solid fa-file-pdf upload-icon" id="upload-icon-display"></i>
+                                    <p class="upload-primary-text" id="upload-status-text">Drag & drop your file here, or <span class="highlight-text">browse files</span></p>
+                                    <p class="upload-secondary-text">Supported formats: PDF, PNG, JPG, JPEG (Max size: 10 MB)</p>
+                                </div>
+                            </div>
+                            <div class="upload-file-details hidden" id="upload-file-details">
+                                <div class="file-info-badge">
+                                    <i class="fa-solid fa-file-lines text-teal"></i>
+                                    <span class="file-name" id="upload-file-name">document.pdf</span>
+                                    <span class="file-size" id="upload-file-size">1.5 MB</span>
+                                </div>
+                                <div class="price-calculator-display">
+                                    <div class="calc-row">
+                                        <span>Estimated Pages:</span>
+                                        <strong id="calc-pages">3 pages</strong>
+                                    </div>
+                                    <div class="calc-row">
+                                        <span>Rate:</span>
+                                        <span>5.00 BDT / page</span>
+                                    </div>
+                                    <div class="calc-row highlighted">
+                                        <span>Total Cost:</span>
+                                        <strong id="calc-total-cost" class="text-teal">15.00 BDT</strong>
+                                    </div>
+                                </div>
+                                <div class="upload-progress-bar-container">
+                                    <div class="upload-progress-bar" id="upload-progress"></div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                                <button class="primary-action-btn" id="btn-submit-print" disabled style="flex: 1; margin: 0;">
+                                    <i class="fa-solid fa-paper-plane"></i> Upload & Print
+                                </button>
+                                <button class="secondary-action-btn-small" id="btn-save-to-drive" disabled style="flex: 1; margin: 0; padding: 12px; font-size: 13px; font-weight: bold; border-radius: 8px;">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> Save to Drive
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2.5: Cloud Document Drive -->
+                    <div class="card glass-card" id="card-drive" style="margin-top: 20px;">
+                        <h2 class="card-title"><i class="fa-solid fa-hard-drive icon-accent"></i> My Cloud Document Drive</h2>
+                        <div class="drive-box">
+                            <div class="drive-empty-state" id="drive-empty" style="text-align: center; padding: 25px; color: var(--text-muted);">
+                                <i class="fa-solid fa-folder-open" style="font-size: 2.5rem; margin-bottom: 10px; opacity: 0.4; display: block;"></i>
+                                <span style="font-size: 12px;">No documents saved in your drive yet.</span>
+                            </div>
+                            <div class="drive-list hidden" id="drive-list-container" style="display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto; padding-right: 5px;">
+                                <!-- Saved Documents will be loaded dynamically here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Right Panel: Queue Status & History -->
+                <div class="dash-right-column">
+                    <!-- Card 3: Real-time Print queue -->
+                    <div class="card glass-card">
+                        <h2 class="card-title"><i class="fa-solid fa-circle-nodes icon-accent"></i> Real-time Queue Tracking</h2>
+                        <div class="queue-tracking-box">
+                            <div class="queue-header-details">
+                                <div>Active Printer Queue: <span class="highlight-text" id="user-active-queue-count">0 jobs</span></div>
+                                <div class="refresh-indicator"><i class="fa-solid fa-arrows-rotate animate-spin hidden" id="refresh-spin"></i> Live Updated</div>
+                            </div>
+                            <div class="queue-list" id="user-queue-list">
+                                <div class="empty-queue-message" id="user-empty-queue-msg">
+                                    <i class="fa-solid fa-folder-open empty-icon"></i>
+                                    <p>Your current printing queue is empty.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Personal Print History -->
+                    <div class="card glass-card">
+                        <h2 class="card-title"><i class="fa-solid fa-clock-rotate-left icon-accent"></i> Personal Job History</h2>
+                        <div class="history-box">
+                            <div class="history-table-container">
+                                <table class="dashboard-table" id="history-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Job ID</th>
+                                            <th>Document Name</th>
+                                            <th>Printer</th>
+                                            <th>Timestamp</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="user-history-rows">
+                                        <!-- Mock histories -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 3. OPERATOR Spooler VIEW -->
+        <!-- ==================================================== -->
+        <section id="view-operator" class="view-section animate-fade-in">
+            <div class="dashboard-grid">
+                
+                <!-- Operator Left Panel: Printer Networks -->
+                <div class="dash-left-column">
+                    <!-- Card 0.5: Today's Spooler Earnings -->
+                    <div class="card glass-card" style="margin-bottom: 20px;">
+                        <h2 class="card-title" style="color:var(--color-success);"><i class="fa-solid fa-sack-dollar icon-accent"></i> Today's Spooler Earnings</h2>
+                        <div style="display:flex; justify-content:space-around; align-items:center; padding:15px 10px; text-align:center;">
+                            <div>
+                                <p style="font-size:11px; color:var(--text-muted); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px;">Today's Revenue</p>
+                                <h3 id="op-today-earnings" style="font-size:24px; font-weight:800; color:var(--color-success); margin:0;">0.00 BDT</h3>
+                            </div>
+                            <div style="width:1px; height:40px; background:var(--border-color);"></div>
+                            <div>
+                                <p style="font-size:11px; color:var(--text-muted); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px;">Today's Printed Jobs</p>
+                                <h3 id="op-today-jobs" style="font-size:24px; font-weight:800; color:var(--color-primary); margin:0;">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 1: Network Printer Manager -->
+                    <div class="card glass-card">
+                        <h2 class="card-title"><i class="fa-solid fa-network-wired icon-accent"></i> Node Printer Network</h2>
+                        <div class="printer-network-box">
+                            <div class="printer-node-item" id="node-prn1">
+                                <div class="node-icon"><i class="fa-solid fa-print"></i></div>
+                                <div class="node-info">
+                                    <h3 class="node-name">HP LaserJet Pro 400</h3>
+                                    <p class="node-loc">Room 304 (Lab 3) | Spooler: Windows 11</p>
+                                    <div class="node-stats">
+                                        <span class="node-stat-pill"><i class="fa-solid fa-layer-group"></i> Queue: <strong id="node-prn1-queue">0</strong></span>
+                                        <span class="node-stat-pill"><i class="fa-solid fa-tint"></i> Ink: 84%</span>
+                                        <span class="node-stat-pill"><i class="fa-solid fa-toilet-paper"></i> Paper: Ready</span>
+                                    </div>
+                                </div>
+                                <div class="node-actions">
+                                    <select class="node-status-select" id="select-status-prn1">
+                                        <option value="Online">Online</option>
+                                        <option value="Busy">Busy</option>
+                                        <option value="Offline">Offline</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="printer-node-item" id="node-prn2">
+                                <div class="node-icon"><i class="fa-solid fa-print"></i></div>
+                                <div class="node-info">
+                                    <h3 class="node-name">Epson L3210 InkTank</h3>
+                                    <p class="node-loc">Room 305 (Office) | Spooler: Ubuntu CUPS</p>
+                                    <div class="node-stats">
+                                        <span class="node-stat-pill"><i class="fa-solid fa-layer-group"></i> Queue: <strong id="node-prn2-queue">0</strong></span>
+                                        <span class="node-stat-pill"><i class="fa-solid fa-tint"></i> Ink: 92%</span>
+                                        <span class="node-stat-pill"><i class="fa-solid fa-toilet-paper"></i> Paper: Ready</span>
+                                    </div>
+                                </div>
+                                <div class="node-actions">
+                                    <select class="node-status-select" id="select-status-prn2">
+                                        <option value="Online">Online</option>
+                                        <option value="Busy">Busy</option>
+                                        <option value="Offline">Offline</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Card 2: Queue Worker Controller -->
+                    <div class="card glass-card">
+                        <h2 class="card-title"><i class="fa-solid fa-gears icon-accent"></i> Asynchronous Queue Controller</h2>
+                        <div class="worker-controller-box">
+                            <div class="worker-status-badge">
+                                <div class="worker-status-light" id="worker-light"></div>
+                                <div class="worker-status-info">
+                                    <h4 class="worker-status-title" id="worker-status-title">Queue Worker: RUNNING</h4>
+                                    <p class="worker-status-desc" id="worker-status-desc">FIFO Scheduler polling active every 3 seconds.</p>
+                                </div>
+                            </div>
+                            <div class="worker-actions">
+                                <button class="primary-action-btn" id="btn-toggle-worker">
+                                    <i class="fa-solid fa-pause"></i> Pause Queue Worker
+                                </button>
+                                <button class="secondary-action-btn-small" id="btn-process-manual">
+                                    <i class="fa-solid fa-forward-step"></i> Trigger Manual Queue Dispatch
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Operator Right Panel: Live Queue logs -->
+                <div class="dash-right-column">
+                    <!-- Card 3: Live Spooler Queue -->
+                    <div class="card glass-card">
+                        <h2 class="card-title"><i class="fa-solid fa-rectangle-list icon-accent"></i> Live Spooler Queue (FIFO Order)</h2>
+                        <div class="operator-queue-box">
+                            <div class="queue-summary-banner">
+                                <div class="summary-item">Total Pending: <strong id="op-pending-count">0</strong></div>
+                                <div class="summary-item">Processing: <strong id="op-processing-count">0</strong></div>
+                                <div class="summary-item">Completed: <strong id="op-completed-count">0</strong></div>
+                            </div>
+                            <div class="spooler-table-container">
+                                <table class="dashboard-table" id="spooler-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Job ID</th>
+                                            <th>User ID</th>
+                                            <th>Printer Name</th>
+                                            <th>Filename</th>
+                                            <th>Format</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="op-queue-rows">
+                                        <!-- Queue jobs live -->
+                                    </tbody>
+                                </table>
+                                <div class="empty-queue-message" id="op-empty-queue-msg">
+                                    <i class="fa-solid fa-check-double empty-icon text-green"></i>
+                                    <p>Spooler queue cleared. No pending print commands.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: System Event Log -->
+                    <div class="card glass-card">
+                        <h2 class="card-title"><i class="fa-solid fa-terminal icon-accent"></i> Real-time System Event Log</h2>
+                        <div class="console-box">
+                            <div class="console-output" id="console-log-box">
+                                <!-- Console logs -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Simulation Panel (Control Center) -->
+    <footer class="simulation-bar" id="simulation-bar">
+        <div class="simulation-bar-header" id="btn-toggle-sim-panel">
+            <div class="sim-header-title">
+                <i class="fa-solid fa-sliders"></i>
+                <span>UCPS Interactive Demonstration Control Center</span>
+            </div>
+            <div class="sim-header-indicator">
+                <span class="sim-pill">Auto-Run Simulations Active</span>
+                <i class="fa-solid fa-chevron-up toggle-sim-icon" id="sim-panel-icon"></i>
+            </div>
+        </div>
+        <div class="simulation-bar-body hidden" id="simulation-panel-body">
+            <div class="sim-panel-grid">
+                
+                <!-- Speed Control -->
+                <div class="sim-setting-card">
+                    <h4 class="sim-setting-title">Spooler Printing Speed</h4>
+                    <p class="sim-setting-desc">Simulated time taken for a printer to compile and print pages.</p>
+                    <div class="sim-setting-input">
+                        <label class="radio-label">
+                            <input type="radio" name="print-speed" value="1500"> Fast (1.5s)
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="print-speed" value="4000" checked> Normal (4s)
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="print-speed" value="8000"> Slow (8s)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Simulation triggers -->
+                <div class="sim-setting-card">
+                    <h4 class="sim-setting-title">Simulate Client Traffic</h4>
+                    <p class="sim-setting-desc">Trigger bulk uploads from mock users to test FIFO priority and db queuing.</p>
+                    <div class="sim-setting-actions">
+                        <button class="sim-action-btn bg-teal" id="btn-trigger-single-mock">
+                            <i class="fa-solid fa-plus"></i> Inject Mock Print
+                        </button>
+                        <button class="sim-action-btn bg-purple" id="btn-trigger-bulk-mock">
+                            <i class="fa-solid fa-users"></i> Inject Bulk (3 Users)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Printer errors simulation -->
+                <div class="sim-setting-card">
+                    <h4 class="sim-setting-title">Inject Hardware Failures</h4>
+                    <p class="sim-setting-desc">Toggle states to inspect how spoolers pause and recover print queues.</p>
+                    <div class="sim-setting-actions">
+                        <button class="sim-action-btn bg-yellow" id="btn-sim-paperjam">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Simulate Paper Jam (HP)
+                        </button>
+                        <button class="sim-action-btn bg-red" id="btn-sim-reset-errors">
+                            <i class="fa-solid fa-rotate-left"></i> Reset System Errors
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================================================== -->
+    <!-- BKASH PAYMENT OVERLAY GATEWAY MODAL -->
+    <!-- ==================================================== -->
+    <div class="modal-overlay hidden" id="bkash-gateway-modal">
+        <div class="bkash-modal-box">
+            <div class="bkash-logo-banner">
+                <!-- bKash Icon SVG or Logo -->
+                <div class="bkash-merchant-info">
+                    <span class="m-title">bKash Payment Checkout</span>
+                    <span class="m-name">Merchant: UCPS Spooler Engine</span>
+                    <span class="m-amt">Amount: <strong id="bkash-modal-amount">15.00 BDT</strong></span>
+                </div>
+            </div>
+            <div class="bkash-modal-content">
+                <!-- Step 1: Wallet Number -->
+                <div class="bkash-step" id="bkash-step-wallet">
+                    <p class="bkash-prompt">Enter Your bKash Account Number</p>
+                    <input type="text" class="bkash-input" id="bkash-wallet-number" placeholder="e.g. 017XXXXXXXX" maxlength="11">
+                    <p class="bkash-terms">By clicking confirm, you agree to allow UCPS to charge your bKash wallet.</p>
+                </div>
+                <!-- Step 2: OTP -->
+                <div class="bkash-step hidden" id="bkash-step-otp">
+                    <p class="bkash-prompt">Enter Verification Code (OTP)</p>
+                    <input type="text" class="bkash-input" id="bkash-otp-code" placeholder="e.g. 123456" maxlength="6">
+                    <p class="bkash-terms">OTP has been sent to your mobile. Enter to proceed.</p>
+                </div>
+                <!-- Step 3: PIN -->
+                <div class="bkash-step hidden" id="bkash-step-pin">
+                    <p class="bkash-prompt">Enter Your 5-digit PIN</p>
+                    <input type="password" class="bkash-input" id="bkash-pin" placeholder="•••••" maxlength="5">
+                    <p class="bkash-terms">Your pin is securely processed directly on bKash API servers.</p>
+                </div>
+            </div>
+            <div class="bkash-modal-actions">
+                <button class="bkash-btn-confirm" id="btn-bkash-confirm">CONFIRM</button>
+                <button class="bkash-btn-cancel" id="btn-bkash-close">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic Printer QR Code Modal -->
+    <div class="modal-overlay hidden" id="printer-qr-modal">
+        <div class="checkout-choice-box glass-card" style="width: 380px; text-align: center; padding: 25px;">
+            <h3 class="card-title text-teal" style="font-size:1.4rem; justify-content:center; display:flex; gap:10px; border-bottom:none; margin-bottom:5px;">
+                <i class="fa-solid fa-qrcode"></i> Scan to Print
+            </h3>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">
+                Scan the QR code below to connect your device directly to this printer.
+            </p>
+            <!-- Large QR Card -->
+            <div style="background: white; padding: 20px; border-radius: 12px; display: inline-block; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin-bottom: 15px;">
+                <img id="modal-qr-image" src="" alt="Printer QR Code" style="width: 200px; height: 200px; display: block;">
+            </div>
+            <!-- Printer info badge -->
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; margin-bottom: 20px; text-align: left;">
+                <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 2px;">Selected Printer:</div>
+                <strong style="color: var(--text-primary); font-size: 13px;" id="modal-qr-printer-name">PDF24</strong>
+                <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px; margin-bottom: 2px;">Direct Link:</div>
+                <a id="modal-qr-link" href="#" target="_blank" style="color: var(--color-primary); font-family: var(--font-mono); font-size: 10px; word-break: break-all;">http://localhost/...</a>
+            </div>
+            <button class="secondary-action-btn-small" id="btn-close-qr-modal" style="width: 100%;">
+                <i class="fa-solid fa-xmark"></i> Close Label
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout Selection Modal -->
+    <div class="modal-overlay hidden" id="checkout-choice-modal">
+        <div class="checkout-choice-box glass-card">
+            <h3 class="card-title text-teal" style="font-size:1.4rem; justify-content:center; display:flex; gap:10px;"><i class="fa-solid fa-cart-shopping"></i> UCPS Order Dispatch</h3>
+            <p class="checkout-order-desc" style="text-align:center; font-size:13px; color:var(--text-secondary); margin-bottom:12px;">
+                Complete payment to release file to spooler queue:<br>
+                <strong id="checkout-filename" class="text-purple" style="font-family:var(--font-mono); font-size:12px;">document.pdf</strong>
+            </p>
+            <!-- Scrollable PDF/Image live preview box -->
+            <div class="document-preview-container" style="margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border-color); overflow: hidden; height: 180px; background: rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center;">
+                <div id="checkout-preview-box" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    <span style="color: var(--text-muted); font-size: 11px;"><i class="fa-solid fa-file-pdf" style="font-size:2rem; margin-bottom:8px; display:block;"></i>No preview ready</span>
+                </div>
+            </div>
+            <div class="print-options-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 6px; border: 1px solid var(--border-color);">
+                <div class="option-item" style="display:flex; flex-direction:column; gap:4px; text-align:left;">
+                    <label class="field-label" style="font-size:10px; margin:0; color:var(--text-muted);">Copies</label>
+                    <input type="number" id="print-copies" class="sim-select-field" value="1" min="1" style="padding: 6px 8px; font-size:12px; margin:0; background:var(--bg-surface); color:var(--text-main); border:1px solid var(--border-color); border-radius:4px;">
+                </div>
+                <div class="option-item" style="display:flex; flex-direction:column; gap:4px; text-align:left;">
+                    <label class="field-label" style="font-size:10px; margin:0; color:var(--text-muted);">Color Mode</label>
+                    <select id="print-color" class="sim-select-field" style="padding: 6px 8px; font-size:12px; margin:0; background:var(--bg-surface); color:var(--text-main); border:1px solid var(--border-color); border-radius:4px;">
+                        <option value="monochrome" selected>Black & White</option>
+                        <option value="color">Color</option>
+                    </select>
+                </div>
+                <div class="option-item" style="display:flex; flex-direction:column; gap:4px; text-align:left;">
+                    <label class="field-label" style="font-size:10px; margin:0; color:var(--text-muted);">Paper Size</label>
+                    <select id="print-size" class="sim-select-field" style="padding: 6px 8px; font-size:12px; margin:0; background:var(--bg-surface); color:var(--text-main); border:1px solid var(--border-color); border-radius:4px;">
+                        <option value="A4" selected>A4</option>
+                        <option value="Letter">Letter</option>
+                        <option value="Legal">Legal</option>
+                    </select>
+                </div>
+                <div class="option-item" style="display:flex; flex-direction:column; gap:4px; text-align:left;">
+                    <label class="field-label" style="font-size:10px; margin:0; color:var(--text-muted);">Page Range</label>
+                    <select id="print-range-select" class="sim-select-field" style="padding: 6px 8px; font-size:12px; margin:0; background:var(--bg-surface); color:var(--text-main); border:1px solid var(--border-color); border-radius:4px;">
+                        <option value="all" selected>All Pages</option>
+                        <option value="1">Page 1 Only</option>
+                        <option value="1-2">Pages 1-2</option>
+                        <option value="1-3">Pages 1-3</option>
+                        <option value="custom">Custom Range...</option>
+                    </select>
+                    <input type="text" id="print-range" class="sim-select-field hidden" value="all" placeholder="e.g. 1-3, 5" style="margin-top: 6px; padding: 6px 8px; font-size:12px; background:var(--bg-surface); color:var(--text-main); border:1px solid var(--border-color); border-radius:4px;">
+                </div>
+            </div>
+            <div class="checkout-amount-pill" style="text-align:center; font-size:1.2rem; font-weight:700; color:var(--text-primary); background:rgba(255,255,255,0.05); padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:20px;">
+                Total Charge: <strong id="checkout-amount" class="text-teal">15.00 BDT</strong>
+            </div>
+            <div class="checkout-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+                <div class="checkout-card" id="btn-pay-bkash" style="cursor:pointer; background:rgba(226, 19, 110, 0.1); border:1px solid rgba(226, 19, 110, 0.2); padding:15px; border-radius:10px; text-align:center; transition:all 0.2s ease;">
+                    <i class="fa-solid fa-mobile-screen" style="font-size:2rem; color:#e2136e; margin-bottom:8px;"></i>
+                    <h4 style="color:var(--text-primary); font-size:14px; margin-bottom:4px;">Pay via bKash</h4>
+                    <p style="font-size:11px; color:var(--text-secondary);">Instant online payment confirmation.</p>
+                </div>
+                <div class="checkout-card" id="btn-pay-cash" style="cursor:pointer; background:rgba(46, 204, 113, 0.1); border:1px solid rgba(46, 204, 113, 0.2); padding:15px; border-radius:10px; text-align:center; transition:all 0.2s ease;">
+                    <i class="fa-solid fa-money-bill-wave" style="font-size:2rem; color:#2ecc71; margin-bottom:8px;"></i>
+                    <h4 style="color:var(--text-primary); font-size:14px; margin-bottom:4px;">Cash at Counter</h4>
+                    <p style="font-size:11px; color:var(--text-secondary);">Queue held until approved by operator.</p>
+                </div>
+            </div>
+            <button class="secondary-action-btn-small" id="btn-cancel-checkout" style="margin-top:20px; width:100%;">
+                <i class="fa-solid fa-circle-xmark"></i> Cancel Order
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================================================== -->
+    <!-- ORDER RECEIPT / REVIEW MODAL -->
+    <!-- ==================================================== -->
+    <div class="modal-overlay hidden" id="order-receipt-modal">
+        <style>
+            @media (max-width: 480px) { .receipt-preview-wrapper { display: none !important; } }
+        </style>
+        <div class="checkout-choice-box glass-card" id="receipt-modal-box" style="width: 400px; text-align: center; padding: 0; display: flex; flex-direction: column; max-height: 90vh;">
+            <!-- Scrollable Content Area -->
+            <div style="flex: 1; overflow-y: auto; padding: 24px 24px 12px 24px; -webkit-overflow-scrolling: touch;">
+                <div style="font-size: 3.2rem; color: var(--color-success); margin-bottom: 12px; text-shadow: 0 0 15px rgba(16, 185, 129, 0.4);">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h3 class="card-title text-teal" style="font-size: 1.4rem; justify-content: center; border-bottom: none; padding-bottom: 0; margin-top: 5px; margin-bottom: 8px;">Order Dispatched Successfully!</h3>
+                <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 12px;">Review your cloud print job receipt details below:</p>
+                <!-- Receipt preview box: hidden on mobile to save space -->
+                <div class="receipt-preview-wrapper" style="margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border-color); overflow: hidden; height: 140px; background: rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center;">
+                    <div id="receipt-preview-box" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: var(--text-muted); font-size: 10px;">No preview</span>
+                    </div>
+                </div>
+                <!-- Receipt Card Details -->
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 10px; padding: 16px; text-align: left; margin-bottom: 8px; display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                        <span style="color: var(--text-muted);">Receipt Job ID:</span>
+                        <strong style="color: var(--text-main);" id="receipt-job-id">UCPS-1004</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                        <span style="color: var(--text-muted);">Document:</span>
+                        <strong style="color: var(--color-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px;" id="receipt-filename">document.pdf</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                        <span style="color: var(--text-muted);">Printer Target:</span>
+                        <strong style="color: var(--text-main);" id="receipt-printer">HP LaserJet Pro</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                        <span style="color: var(--text-muted);">Pages / Charge:</span>
+                        <strong style="color: var(--text-main);" id="receipt-cost">3 pages / 15.00 BDT</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                        <span style="color: var(--text-muted);">Payment Channel:</span>
+                        <strong style="color: var(--text-main);" id="receipt-payment">bKash</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 12px; border-top: 1px dashed var(--border-color); padding-top: 8px; margin-top: 4px; align-items:center;">
+                        <span style="color: var(--text-muted);">Queue Status:</span>
+                        <span class="status-pill completed" id="receipt-status" style="padding: 2px 8px; font-size: 10px;">Spooling</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Sticky Close Button — always visible at bottom -->
+            <div style="flex-shrink: 0; padding: 12px 24px 24px 24px; border-top: 1px solid var(--border-color);">
+                <button class="primary-action-btn" id="btn-close-receipt" style="width: 100%;">
+                    <i class="fa-solid fa-xmark"></i> Close &amp; Back to Portal
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Document Preview Modal -->
+    <div class="modal-overlay hidden" id="preview-modal" style="z-index: 4000;">
+        <div class="checkout-choice-box glass-card" style="max-width: 1100px; width: 95%; height: 90vh; display: flex; flex-direction: column; padding: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 15px; width: 100%;">
+                <h3 class="modal-title" style="margin:0; font-size: 16px; color: var(--color-primary);"><i class="fa-solid fa-file-pdf"></i> <span id="preview-modal-title">Document Preview</span></h3>
+                <button id="btn-close-preview" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer; font-size: 18px;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="preview-modal-body" style="flex: 1; overflow: hidden; background: rgba(0,0,0,0.25); border-radius: 8px; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                <!-- iframe or image will load here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Settings Modal -->
+    <div class="modal-overlay hidden" id="profile-settings-modal" style="z-index: 5000;">
+        <div class="checkout-choice-box glass-card" style="max-width: 480px; width: 95%; padding: 25px; text-align: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px; width: 100%;">
+                <h3 class="modal-title text-teal" style="margin:0; font-size: 16px;"><i class="fa-solid fa-user-gear"></i> Account Settings</h3>
+                <button id="btn-close-profile" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer; font-size: 18px;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <form id="profile-update-form" style="display: flex; flex-direction: column; gap: 15px; text-align: left;">
+                <!-- Avatar Upload Area -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <div style="position: relative; width: 80px; height: 80px; border-radius: 50%; overflow: hidden; background: rgba(0,0,0,0.3); border: 2px solid var(--color-primary); display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-circle-user" id="profile-avatar-placeholder" style="font-size: 5rem; color: var(--text-muted);"></i>
+                        <img id="profile-avatar-img" src="" class="hidden" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div id="profile-avatar-upload-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; height: 28px; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 9px; cursor: pointer; transition: 0.2s;">
+                            <i class="fa-solid fa-camera"></i>
+                        </div>
+                    </div>
+                    <input type="file" id="profile-avatar-input" accept=".png,.jpg,.jpeg" class="hidden">
+                    <span style="font-size: 10px; color: var(--text-muted);">Click camera icon to change profile picture</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label class="field-label" style="font-size: 11px; color: var(--text-muted);">Full Name</label>
+                    <input type="text" id="profile-name-input" class="sim-select-field" placeholder="Enter Full Name" style="padding: 8px 12px; font-size: 13px; background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 6px;">
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label class="field-label" style="font-size: 11px; color: var(--text-muted);">New Password (leave blank to keep current)</label>
+                    <input type="password" id="profile-pass-input" class="sim-select-field" placeholder="••••••••" style="padding: 8px 12px; font-size: 13px; background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 6px;">
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label class="field-label" style="font-size: 11px; color: var(--text-muted);">Confirm New Password</label>
+                    <input type="password" id="profile-confirm-pass-input" class="sim-select-field" placeholder="••••••••" style="padding: 8px 12px; font-size: 13px; background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 6px;">
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button type="button" class="secondary-action-btn" id="btn-cancel-profile" style="flex: 1; padding: 10px; margin: 0; font-size: 12px;">Cancel</button>
+                    <button type="submit" class="primary-action-btn" id="btn-save-profile" style="flex: 1; padding: 10px; margin: 0; font-size: 12px;">Save Changes</button>
+                </div>
+                <div style="margin-top: 10px;">
+                    <button type="button" class="secondary-action-btn" id="btn-modal-logout" style="width: 100%; padding: 10px; margin: 0; font-size: 12px; color: var(--color-danger); border-color: rgba(239, 68, 68, 0.2); background: rgba(239, 68, 68, 0.05); font-weight: bold; border-radius: 8px;">
+                        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Camera QR Code Scanner Modal -->
+    <div class="modal-overlay hidden" id="qr-scanner-modal" style="z-index: 100000;">
+        <div class="checkout-choice-box glass-card" style="width: 450px; max-width: 95vw; padding: 20px; text-align: center;">
+            <h3 class="card-title text-teal" style="font-size: 1.4rem; justify-content: center; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-camera"></i> QR Code Scanner
+            </h3>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">
+                Align the printer's QR label inside the camera viewport to pair instantly.
+            </p>
+            
+            <!-- Target Camera Container -->
+            <div id="qr-reader-container" style="width: 100%; min-height: 250px; background: rgba(0,0,0,0.4); border-radius: 8px; border: 1px dashed var(--border-color); overflow: hidden; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+                <div style="color: var(--text-muted); font-size: 12px;"><i class="fa-solid fa-camera-rotate" style="font-size: 2rem; margin-bottom: 8px; display: block; opacity: 0.5;"></i>Requesting camera feed...</div>
+            </div>
+            
+            <button class="secondary-action-btn" id="btn-close-qr-scanner" style="width: 100%; margin: 0; padding: 12px; font-weight: bold; border-radius: 8px;">
+                <i class="fa-solid fa-circle-xmark"></i> Cancel & Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Global Floating Alerts -->
+    <div class="notification-container" id="notification-area"></div>
+
+    <script src="app.js?v=5.0"></script>
+</body>
+</html>

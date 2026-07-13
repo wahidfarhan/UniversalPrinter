@@ -1,0 +1,11 @@
+{
+    "api_url": "https://print.codingverse.me/",
+    "node_id": "PRN001",
+    "poll_secs": 3,
+    "email": "farhanrahman1985@gmail.com",
+    "password": "",
+    "remember_me": false,
+    "API_BASE_URL": "https://print.codingverse.me",
+    "PRINTER_ID": "PRN005",
+    "POLL_INTERVAL": 3
+}

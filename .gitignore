@@ -1,0 +1,17 @@
+# Ignore local database and dynamic file spooler uploads
+ucps_db.sqlite
+ucps_database.db
+uploads/
+
+# Ignore compiled binary executables and release archives
+*.exe
+*.zip
+__pycache__/
+build/
+dist/
+*.spec
+.gemini/
+~$PS_Project_Report.docx
+
+# Ignore local config files if they contain local paths/secrets
+zip.ps1

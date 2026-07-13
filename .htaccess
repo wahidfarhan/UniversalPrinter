@@ -1,0 +1,26 @@
+# UCPS cPanel .htaccess
+# Protects sensitive files and ensures PHP works correctly
+
+# Protect SQLite database from direct access
+<Files "ucps_db.sqlite">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Protect config files
+<Files "config.json">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Allow large file uploads (up to 10MB)
+php_value upload_max_filesize 10M
+php_value post_max_size 12M
+php_value max_execution_time 60
+php_value memory_limit 128M
+
+# Enable SQLite PDO (usually enabled on cPanel hosts)
+# php_extension pdo_sqlite.so
+
+# Disable directory listing
+Options -Indexes

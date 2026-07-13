@@ -1,0 +1,476 @@
+--- PAGE 1 ---
+UNIVERSAL CLOUD PRINT SYSTEM 
+(UCPS) 
+A Secure, QR-Based Smart Cloud Printing Platform for Legacy Printers 
+Submitted To 
+CSE Fest 2026 Software Project Showcase 
+Department of Computer Science and Engineering (CSE) 
+Shanto-Mariam University of Creative Technology (SMUCT) 
+Submitted By 
+ 
+Name Student ID Role 
+Wahidur Rahman [2026-2-60-046] Team Leader 
+Maloy Roy Orko [2026-2-60-462] Backend Developer 
+Intisar Muhib [2026-2-60-239] Frontend Developer 
+Department of Computer Science & Engineering (CSE) 
+East West University (EWU) 
+ 
+Date of Submission: June 2026 
+ 
+--- PAGE 2 ---
+Table of Contents 
+The following table maps the required report sections specified in Section 12 of the CSE Fest 
+2026 rulebook. 
+Section 1: Title Page...........................................................Page 1 
+Section 2: Abstract.............................................................Page 3 
+Section 3: Problem Statement....................................................Page 4 
+Section 4: Objectives...........................................................Page 5 
+Section 5: System Architecture..................................................Page 6 
+Section 6: Technologies Used....................................................Page 8 
+Section 7: Key Features.........................................................Page 9 
+Section 8: Implementation Details...............................................Page 10 
+Section 9: Results & Evaluation.................................................Page 12 
+Section 10: Challenges & Limitations............................................Page 13 
+Section 11: Future Scope........................................................Page 14 
+Section 12: References..........................................................Page 15 
+ 
+--- PAGE 3 ---
+Section 2: Abstract 
+In modern academic and commercial environments, document printing remains a core 
+administrative and educational necessity. Despite rapid advances in cloud computing, file 
+transfer, and web technologies, the workflow surrounding physical document printing remains 
+highly archaic, manual, and fragmented. Users routinely transfer files to print operators using 
+temporary channels such as WhatsApp, Gmail, Facebook Messenger, Bluetooth, or physical 
+USB storage devices. These methods introduce substantial operational bottlenecks, extend 
+waiting times, compromise document privacy, and require high manual effort from printing staff. 
+The Universal Cloud Print System (UCPS) is an innovative, centralized, cloud-based platform 
+designed to modernize legacy printing services. UCPS enables users to securely upload 
+documents from any internet-connected device (smartphone, tablet, laptop, or desktop) and print 
+them on any registered physical printer via a quick QR code pairing mechanism. By acting as an 
+intelligent middleware between the cloud database and local operating system print spoolers, 
+UCPS eliminates third-party messaging dependencies, optimizes local network routing, and 
+automates document execution without requiring any electronic hardware upgrades to existing 
+legacy printers. 
+To protect user privacy and system integrity, the platform implements a secure, multi-stage file 
+validation pipeline. Uploaded files undergo MIME type verification, strict filename sanitization 
+via randomized hashing, and placement inside a secure print buffer. Print jobs are placed in an 
+intelligent queue governed by a First-In-First-Out (FIFO) scheduling algorithm and are 
+automatically deleted from the server immediately after successful printing, ensuring compliance 
+with data privacy standards. 
+A quantitative evaluation of the system implemented in a simulated university campus 
+environment demonstrated an average 60% reduction in user steps (from 5 to 2), an 83% 
+reduction in operator actions (from 6 to 1), and a substantial decrease in average document 
+transfer time (from 120–180 seconds down to 15–30 seconds). The results prove that UCPS is a 
+highly viable, secure, and low-cost solution suitable for academic institutions, corporate offices, 
+public libraries, and commercial print centers seeking to transition to smart, digital-first printing 
+workflows. 
+Keywords: Keywords: Cloud Printing, Smart Printer, QR Code, Queue Management, Document 
+Security, FIFO Scheduler. 
+ 
+--- PAGE 4 ---
+Section 3: Problem Statement 
+Imagine a common situation faced by many students and professionals. You are on your way to 
+submit an assignment, print an official document, or attend an important interview. After 
+reaching the printing shop, you suddenly realize that the required document was left on your 
+home computer. In another case, the document is stored somewhere in your mobile phone, but 
+finding it among hundreds of files takes several minutes. Sometimes the file has even been 
+accidentally deleted or is no longer accessible. 
+Even when the document is available, the printing process itself is often inconvenient. Users 
+usually have to send their files through WhatsApp, Gmail, Messenger, or Bluetooth to the shop 
+operator. This creates unnecessary delays and exposes personal documents to privacy risks. 
+Sensitive files such as national ID cards, certificates, academic transcripts, photographs, or 
+financial documents remain in the operator's messaging applications or email accounts, 
+increasing the possibility of unauthorized access or misuse. 
+Another common challenge is the long waiting queue in busy printing centers. Since users 
+cannot monitor the print queue remotely, they are forced to stand in line until their turn arrives. 
+At the same time, operators spend considerable time downloading files, opening different 
+applications, configuring print settings, and manually processing each request, which reduces 
+overall efficiency. 
+Section 4: Objectives 
+The primary objective of the Universal Cloud Print System is to develop a secure cloud-based 
+platform that transforms conventional printers into smart printing devices without requiring 
+hardware replacement. The specific goals the project aims to achieve are: 
+• Direct Web Upload: Build a centralized web platform where users can log in, upload 
+documents, and track their printing status. 
+• QR-Based Pairing: Implement a QR code scanning interface that pairs a user's web session 
+with a specific physical printer instantly. 
+• FIFO Queue Management: Create a database-backed FIFO (First-In-First-Out) queue to 
+schedule print jobs fairly and handle multiple requests concurrently. 
+• File Validation and Security: Ensure high security by validating file size, verifying MIME 
+types, and sanitizing filenames to block malicious uploads. 
+• Print Automation: Develop a background queue worker that automates document dispatch 
+to local print engines without human intervention. 
+--- PAGE 5 ---
+• Multi-OS Print Integration: Build cross-platform support for Windows (using SumatraPDF 
+CLI) and Linux (using CUPS command-line utilities). 
+• Automatic Document Cleanup: Protect user privacy by automatically deleting temporary 
+files from the server's print buffer as soon as a print job completes. 
+• Dual-Dashboard Interface: Design responsive dashboards for both users (to upload and 
+monitor jobs) and operators (to monitor queue and printer status). 
+• Zero Hardware Overhead: Deliver a hardware-independent system that runs on existing 
+legacy printers, eliminating the need for expensive hardware upgrades. 
+Section 5: System Architecture 
+The Universal Cloud Print System operates on a client-server architecture model. The client 
+layer is entirely web-based, enabling any device with a modern browser to access the system. 
+The server layer manages authentication, printer status, file uploads, and queue scheduling. The 
+printing layer is hosted on a local machine physically connected to the printers, running a 
+background service that polls the server for jobs and executes them using native command-line 
+printing tools. 
+5.1 System Architecture Layers 
+The system architecture is divided into three key layers to ensure scalability and clear separation 
+of concerns. The structure and components of these layers are mapped in the table below: 
+System Layer Key Modules / Components Role & Protocols 
+Presentation Layer (Client Browser) Web Browser Interface 
+(HTML5/CSS3/JS), Web QR 
+Scanner, File Upload Drag-and-Drop 
+Area 
+Provides the user interface for 
+authentication, pairing, and document 
+submission. Communicates via 
+HTTPS. 
+Application Layer (Web Server) Authentication Module, Print Job 
+Queue Manager, Upload Validator, 
+MySQL 8.x Database 
+Processes client requests, validates 
+file integrity, saves documents to 
+secure print buffer, and maintains 
+queue state. 
+Execution Layer (Print Node) Background Queue Worker 
+(PHP/Python polling script), OS 
+Spooler (SumatraPDF on Windows, 
+CUPS on Linux) 
+Polls the server for jobs, downloads 
+files from the print buffer, silent 
+prints to physical printers, and 
+handles cleanups. 
+ 
+--- PAGE 6 ---
+5.2 Data Flow Design (DFD) 
+Data flows securely through the system to prevent unauthorized access. The following tables 
+map the inputs, outputs, and processes at both Level-0 (Context level) and Level-1 (Process 
+level) DFD representation: 
+Level-0 DFD Table: Level-0 DFD Table (System Context Diagram Mapping) 
+Source Entity Data Input to UCPS Data Output from UCPS 
+User / Client Device User login credentials, Printer QR 
+code ID, Printable document file 
+(.pdf/.png/.jpg) 
+Authentication status, Printer paired 
+confirmation, Real-time queue status, 
+Print job completion notification 
+Physical Printer Raw print commands and formatted 
+document data dispatched by host 
+spooler 
+Printer status updates (Online, Busy, 
+Out of paper, Offline) 
+ 
+Level-1 DFD Table: Level-1 DFD Table (Process Interaction Mapping) 
+Process Name Inputs Outputs Data Stores Accessed 
+1.0 User Authentication Login credentials (email, 
+password) 
+Auth token, User session 
+info 
+Users Database Table 
+2.0 Printer Pairing Printer QR Code ID Session paired state Printers Database Table 
+3.0 Document Upload Printable file, paired Printer 
+ID 
+Job ID, Saved file in buffer Print Jobs Table, Print 
+Buffer (FS) 
+4.0 Queue Processing Job metadata, physical file Print job dispatch to 
+spooler 
+Print Jobs Table, Print 
+Buffer (FS) 
+5.0 Print Spooling Print command Physical printed document OS Spooler / Printer 
+Spooler 
+6.0 File Cleanup Completion confirmation Temporary file deletion, 
+job state set to Completed 
+Print Jobs Table, Print 
+Buffer (FS) 
+ 
+5.3 Overall System Workflow Diagram 
+The step-by-step sequence of operations from user authentication to automatic document 
+deletion is represented in the native diagram flowchart below: 
+Step 1: User logs in to the UCPS Web Application 
+▼ 
+Step 2: User scans printer QR Code or selects location from manual shop 
+directory 
+▼ 
+--- PAGE 7 ---
+Step 3: System pairs session to the selected Printer ID 
+▼ 
+Step 4: User uploads the PDF or Image document via HTTPS 
+▼ 
+Step 5: PHP backend performs binary validation and MIME check 
+▼ 
+Step 6: System calculates dynamic BDT cost based on file page counts 
+▼ 
+Step 7: User executes payment via bKash Checkout API or selects Cash option 
+▼ 
+Step 8: File is renamed with a secure hash and placed in secure buffer 
+▼ 
+Step 9: If Cash payment, Operator physically collects cash and approves job 
+▼ 
+Step 10: Job is released in database queue for polling worker (Pending status) 
+▼ 
+Step 11: Background Queue Worker locks and pulls oldest Pending job using 
+FOR UPDATE 
+▼ 
+Step 12: Queue Worker sends silent print command to OS Spooler 
+(SumatraPDF/CUPS) 
+▼ 
+Step 13: Physical printer prints document and server erases temp file from 
+buffer 
+ 
+Section 6: Technologies Used 
+The Universal Cloud Print System is designed as a lightweight, cross-platform web application 
+with a decoupled printing backend. To ensure maximum compatibility and zero license costs, 
+open-source and native operating system technologies are selected: 
+• HTML5, CSS3, and JavaScript: Used to construct the client dashboard interface. 
+Responsive layout handles mobile browsers and desktop environments seamlessly. No third-
+--- PAGE 8 ---
+party heavy Javascript frameworks are required, ensuring extremely fast load times on public 
+networks. 
+• PHP 8.x (Backend): The primary server-side logic processor. It handles multipart/form-data 
+file uploads, authentication sessions, file metadata validation, and REST API routing. 
+• MySQL 8.x (Database): Relational database to maintain print queues, printer nodes, and 
+user accounts. Atomic transactions are utilized to handle simultaneous print jobs. 
+• SumatraPDF CLI (Windows Spooler Client): A lightweight, open-source PDF viewer for 
+Windows systems. It is integrated into the Windows Print Node to execute sessional PDF 
+prints from the command-line silently. 
+• Common UNIX Printing System - CUPS (Linux Spooler Client): The native UNIX print 
+subsystem utilized in Linux print nodes. It receives print requests directly from our 
+background worker via lp command line parameters. 
+Section 7: Key Features 
+The Universal Cloud Print System (UCPS) implements several features designed to optimize 
+user convenience, operator efficiency, and data security: 
+• QR-Based Printer Pairing: Users scan a unique QR code attached to a physical printer. 
+This instantly binds their active web session to that printer, removing any manual selection 
+error. 
+• Manual Printer Directory Search: For client devices without working camera units, users 
+can search a location-based directory of active print shops and manually bind their session to 
+a selected printer. 
+• Dynamic Cost Calculator: The system parses uploaded files to count pages and estimates 
+print job costs dynamically in BDT (5 BDT per page) before processing payment. 
+• Dual Payment Gateways (bKash & Cash): Integrates bKash payment gateway API for 
+instant online transactions, and a manual cash option where operators approve print jobs after 
+receiving cash physically. 
+• Asynchronous FIFO Print Queue: Print jobs are handled asynchronously. The web server 
+immediately stores files and returns a success response to the user, who can exit the page. 
+The background queue worker takes care of spooling without human intervention. 
+• Multi-stage File Security: Uploaded files undergo binary check validation to prevent 
+malicious uploads, and filenames are replaced with unique secure hashes to prevent directory 
+traversal. 
+--- PAGE 9 ---
+• Immediate Post-Print File Erasure: The system automatically deletes documents from the 
+server buffer immediately after a print job completes. No files are stored permanently, 
+safeguarding privacy. 
+• Dual Role-based Dashboards: Separate, responsive interfaces tailored for users (to upload 
+and track files in real-time) and print operators (to monitor spooler queues, approve cash 
+transactions, and toggle printer states). 
+Section 8: Implementation Details 
+8.1 File Security Pipeline 
+Accepting file uploads from public users presents potential security risks. To protect the server 
+and printer hosts, UCPS uses a strict security pipeline for every uploaded file. The sequential 
+steps of the security pipeline are represented in the flowchart below: 
+Step 1: User Upload Request (file size checked; restricted to PDF, PNG, JPG, 
+JPEG) 
+▼ 
+Step 2: Session Validation (checks authentication state of user session token) 
+▼ 
+Step 3: Binary MIME Verification (uses PHP's finfo_open to inspect file 
+header) 
+▼ 
+Step 4: Filename Hashing (replaces file name with a unique randomized SHA -
+256 hash) 
+▼ 
+Step 5: Secure Storage (moves file to print buffer directory with script 
+execution disabled) 
+▼ 
+Step 6: Queue Registration (logs job metadata in database; status set to 
+Pending) 
+▼ 
+Step 7: Asynchronous Execution (background worker pulls file data safely) 
+▼ 
+Step 8: Secure Deletion (removes file from disk immediately after spooler 
+confirmation) 
+--- PAGE 10 ---
+ 
+8.2 Print Spooler Integration 
+The background print node translates web-based print requests into commands that the physical 
+printer understands. This is implemented differently depending on the host operating system: 
+Windows Spooler Integration (SumatraPDF CLI) 
+Windows systems typically lack built-in command-line tools that reliably print PDF and image 
+formats without displaying a user interface. To achieve silent printing, the Windows Print Node 
+utilizes SumatraPDF CLI, a lightweight, open-source PDF viewer. 
+Command Format: When the background worker detects a print job, it downloads the PDF file 
+and executes the following command silently: 
+SumatraPDF.exe -print-to-default -silent 
+"C:\print_buffer\temp_job_8fa31e.pdf" 
+The `-print-to-default` argument directs the document to the system's primary printer, while the 
+`-silent` flag runs the process in the background without opening a viewer window. 
+Linux Spooler Integration (CUPS) 
+Command Format: Linux systems utilize the Common UNIX Printing System (CUPS) to 
+manage physical printers. CUPS provides robust command-line utilities out of the box. When a 
+job is detected, the Linux Print Node executes the native `lp` command: 
+lp -d HP_LaserJet_Pro_400 -o fit-to-page 
+/tmp/print_buffer/temp_job_8fa31e.pdf 
+Here, `-d` specifies the targeted printer, and `-o fit-to-page` scales the document to the printable 
+area of the paper, preventing formatting issues. 
+8.3 Asynchronous Queue Worker & Concurrency 
+Database Lock: To prevent race conditions—such as two print nodes downloading and printing 
+the same job—the system uses database-level locks. The worker retrieves and locks the oldest 
+pending job using an atomic transaction: 
+START TRANSACTION; 
+SELECT job_id, filename FROM print_jobs  
+WHERE status = "Pending" AND printer_id = "PRN001"  
+ORDER BY upload_time ASC LIMIT 1 FOR UPDATE; 
+UPDATE print_jobs SET status = "Printing" WHERE job_id = [selected_job_id]; 
+COMMIT; 
+--- PAGE 11 ---
+The `FOR UPDATE` clause locks the selected row, preventing other processes from modifying 
+it until the transaction completes. This guarantees that each print job is executed exactly once, 
+even during high-traffic periods. 
+8.4 Integrated Billing & bKash checkout API flow 
+To commercialize and sustain the cloud printing infrastructure, UCPS integrates an automated 
+billing and payment pipeline. The system calculates the job cost dynamically based on document 
+parameters using a page extraction library on the server side: Cost = PageCount * Rate (e.g. 5 
+BDT per page). 
+Users can complete payment using two options: online mobile banking via the bKash API, or 
+cash at the print counter. The status of payment is tracked in the database print_jobs table via the 
+payment_status column, which has states: 'Unpaid', 'bKash_Paid', and 'Cash_Approved'. 
+When the user selects bKash payment, the client dashboard interacts with the bKash tokenized 
+checkout REST API. The workflow is represented as follows: 
+• 1. Payment Creation: Web Server issues a request to the bKash API to create a payment 
+request (Create Payment API) with the calculated BDT amount. 
+• 2. Secure Checkout: bKash returns a secure gateway checkout URL; the web app renders 
+this within a secure iframe/modal overlay where the user enters their wallet number. 
+• 3. Authentication: The user enters a one-time OTP and their secure 5-digit PIN directly to 
+bKash servers. 
+• 4. API Callback & Release: bKash redirects to the callback API on the web server 
+(executePayment). The server validates the transaction hash, updates the job state's 
+payment_status to 'bKash_Paid' in the database, and releases the job to the spooler queue. 
+If the user selects the cash option, the job is queued immediately, but its status remains locked as 
+'Unpaid' and the background queue worker bypasses it. The operator dashboard displays a 
+distinct 'Pending Payment' alert. Once the operator physically receives the cash from the user, 
+they click the 'Approve Payment' button on the operator console. This triggers an API call that 
+updates the database state to 'Cash_Approved', immediately releasing the job into the printer 
+queue. 
+Section 9: Results & Evaluation 
+To evaluate the functionality and reliability of the Universal Cloud Print System, the platform 
+was tested in a simulated campus environment with multiple concurrent users and various file 
+formats. The results of these test cases are summarized in the table below: 
+--- PAGE 12 ---
+Test Case Input/Action Expected Result Status 
+User Authentication Valid/invalid credentials Allow login for valid users, 
+reject invalid ones 
+Passed 
+QR Code Pairing Scan printer QR code Pair user session with the 
+correct printer ID in the 
+database 
+Passed 
+Standard PDF Upload 1.5 MB PDF Document Validate, rename, store in 
+buffer, and add to print 
+queue 
+Passed 
+Image Upload PNG and JPG images Verify MIME type, accept 
+file, and add to queue 
+Passed 
+Invalid File Upload Executable file (.exe) Reject file upload and 
+display security error 
+message 
+Passed 
+FIFO Scheduling 3 concurrent uploads Process print jobs in the 
+exact order of their upload 
+timestamps 
+Passed 
+Printer Offline Handler Queue job while printer is 
+offline 
+Keep job status as Pending 
+and retry once printer 
+reconnects 
+Passed 
+File Deletion Cleanup Print job completes Verify document is 
+permanently deleted from 
+server print buffer 
+Passed 
+ 
+9.2 Quantitative Performance Evaluation 
+The performance of UCPS was compared directly against the traditional WhatsApp/Gmail-based 
+printing workflow. The results show a clear improvement in efficiency and security across all 
+measured metrics: 
+Evaluation Metric Traditional Printing Workflow Universal Cloud Print System 
+(UCPS) 
+User Steps Required 5 steps (open chat, select file, send, 
+wait in line, instruct operator) 
+2 steps (scan QR code, upload 
+document) 
+Operator Steps Required 6 steps (open app, download, locate 
+file, open file, configure print 
+settings, print) 
+1 step (ensure printer has paper/ink 
+and monitor queue) 
+Average File Transfer Time 120–180 seconds (varies based on 
+network, download speed, and 
+messaging delays) 
+15–30 seconds (direct cloud upload 
+and automatic spooling) 
+Queue Visibility None (users must wait in a physical 
+queue to see printer status) 
+Available (real-time queue status 
+visible on the user dashboard) 
+--- PAGE 13 ---
+Document Privacy Low (files remain on public 
+computers and operators' messaging 
+accounts) 
+High (documents are automatically 
+deleted from server after printing) 
+Remote Printing Support Not supported (requires physical 
+proximity or sharing accounts) 
+Supported (users can queue 
+documents remotely from anywhere) 
+Multi-User Support Limited (causes bottlenecks and 
+operator confusion) 
+Fully supported (handles multiple 
+uploads concurrently) 
+ 
+Section 10: Challenges & Limitations 
+Although the implementation was successful, several technical and logistical challenges were 
+addressed during development: 
+• Print Spooler Access Permissions: The web server must run with appropriate 
+administrative permissions to access the operating system's native print spooler. Secure 
+configurations are required to ensure the server can control printers without creating security 
+risks. 
+• Document Formatting and Compatibility: PDF and image formats are printed directly, but 
+editable formats (such as `.docx` or `.pptx`) can experience formatting changes if printed 
+without the source application. To resolve this, future versions will include a server-side 
+conversion tool (such as headless LibreOffice) to convert all documents to PDF before 
+sending them to the printer. 
+• Network Dependency: Because UCPS is a cloud-based platform, a stable internet 
+connection is required for document upload and queue synchronization. Under offline 
+conditions, print requests cannot be registered. 
+Section 11: Future Scope 
+The current implementation serves as a Minimum Viable Product (MVP). To build a fully 
+featured, enterprise-grade platform, several enhancements are planned for future versions: 
+• Mobile Applications: Develop native Android and iOS applications to provide a faster 
+mobile experience and push notifications. 
+• Institutional Single Sign-On: Connect the system with University Single Sign-On (SSO) 
+systems to allow students to log in using their institutional credentials. 
+• Load Balancing: Build a multi-printer load balancer that automatically routes jobs to the 
+least busy printer in a lab to optimize queue speeds. 
+--- PAGE 14 ---
+• Raspberry Pi Print Node: Utilize a low-cost Raspberry Pi as a dedicated print node, 
+allowing standard USB printers to connect to the cloud without requiring a dedicated PC. 
+Section 12: References 
+• The PHP Group. 'PHP Manual: File Uploads and Filesystem Functions.' Available: 
+https://www.php.net/manual/ 
+• Mozilla Developer Network (MDN). 'Using files from web applications.' Available: 
+https://developer.mozilla.org/ 
+• Common UNIX Printing System (CUPS). 'CUPS Command-Line Printing.' Available: 
+https://www.cups.org/documentation.html 
+• Microsoft Developer Network. 'Windows Printing Architecture and Spooler API.' Available: 
+https://learn.microsoft.com/ 
+• SumatraPDF. 'SumatraPDF Command Line Arguments for Silent Printing.' Available: 
+https://www.sumatrapdfreader.org/ 
+• OWASP Foundation. 'OWASP Top 10 Web Application Security Risks.' Available: 
+https://owasp.org/www-project-top-ten/ 
+• SMUCT Department of Computer Science & Engineering. 'CSE Fest 2026 Software Project 
+Showcase Rulebook.' 
