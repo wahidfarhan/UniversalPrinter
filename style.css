@@ -1061,6 +1061,28 @@ body {
     padding: 16px;
     height: 180px;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) #05070d;
+}
+
+/* Custom Scrollbar for Console Box */
+.console-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.console-box::-webkit-scrollbar-track {
+    background: #05070d;
+    border-radius: 12px;
+}
+
+.console-box::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: var(--transition-smooth);
+}
+
+.console-box::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
 }
 
 .console-output {
